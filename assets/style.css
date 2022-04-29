@@ -126,3 +126,19 @@ h2 {
     background-color: #DEA6A6;
 }
 
+/* styling for sections */
+
+#genres {
+    background-color: #222F73;
+    color: #fcf6c9;
+}
+
+#series-movie {
+    background-color: #77BDA8;
+    color: #222F73;
+}
+
+#results {
+    background-color: #503659;
+    color:#77BDA8;
+}
