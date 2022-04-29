@@ -9,23 +9,24 @@ var getId = element => document.getElementById(element) // Returns an HTML eleme
 // Global Variables
 var index = 0;
 
-// Function that iterates over section nodeList and returns the current node the user is on.
-// The current node is always the index variable value and not the other way around
-// Loops over all nodes and adds class hidden // REPLACE queryAll('element here') WITH HTML ELEMENT TAG THAT NEEDS TO HAVE HIDDEN CLASS
+// Replace 'element here' with the html parents that have/will have class hidden
+var forListeners = queryAll('element here')
+
+// Loops over all nodes and returns the node that the user is currently on
 function currentIndex() {
-    for (var i = 0; i < queryAll('section').length; i++) {
+    for (var i = 0; i < forListeners.length; i++) {
         // If the current node data-question value in the for loop matches index value
-        if (queryAll('section')[i].dataset.index === index.toString()) {
-            return queryAll('section')[i];
+        if (forListeners[i].dataset.index === index.toString()) {
+            return forListeners[i];
         } 
     }
 };
 
 // Function that hides all other noncurrent nodes and shows current node
-function posListener() {
-    // Loops over all nodes and adds class hidden // REPLACE queryAll('element here') WITH HTML ELEMENT TAG THAT NEEDS TO HAVE HIDDEN CLASS
-    for (var i = 0; i < queryAll('section').length; i++) {
-        queryAll('section')[i].setAttribute("class", "hidden");
+function showCurrent() {
+    // Loops over all nodes and adds class hidden
+    for (var i = 0; i < forListeners.length; i++) {
+        forListeners[i].setAttribute("class", "hidden");
     };
     // Remove class hidden from current index
     currentIndex().removeAttribute("class");
