@@ -127,6 +127,13 @@ h2 {
     font-size: x-large;
 }
 
+#streaming-service .btn-group checkbox {
+    height: 250px;
+    width: 250px;
+    background-color: #DEA6A6;
+    font-size: x-large;
+}
+
 /* styling for sections */
 
 #genres {
@@ -138,13 +145,14 @@ h2 {
     height: 45vh;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
 
 #genres .btn-group button {
-    height: 250px;
-    width: 250px;
+    height: 20vh;
+    width: 20vh;
     background-color: #fcf6c9;
     font-size: x-large;
 }
@@ -162,10 +170,11 @@ h2 {
     align-items: center;
 }
 
-#series .btn-group button {
+#series-movie .btn-group button {
     height: 250px;
     width: 250px;
     background-color: #222F73;
+    color: #77BDA8;
     font-size: x-large;
 }
 
@@ -173,3 +182,4 @@ h2 {
     background-color: #503659;
     color:#77BDA8;
 }
+
