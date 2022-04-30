@@ -7,7 +7,7 @@ var getId = element => document.getElementById(element) // Returns an HTML eleme
 // console.log(queryAll('section'))
 
 // Global Variables
-var index = 0;
+var index = 1;
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('element here')
@@ -31,3 +31,19 @@ function showCurrent() {
     // Remove class hidden from current index
     currentIndex().removeAttribute("class");
 };
+
+function getApi() {
+    var requestUrl = '';
+
+    fetch(requestUrl)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            for (var i = 0; data.length; i++) {
+                console.log(data[i].length)
+            }
+        })
+}
+
+getApi()
