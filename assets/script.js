@@ -2,12 +2,19 @@
 var queryAll = element => document.querySelectorAll(element); // Returns a nodeList
 var querySel = element => document.querySelector(element); // Returns a node
 var getId = element => document.getElementById(element) // Returns an HTML element
+var getClass = element => document.getElementsByClassName(element)
 
 // Make sure that queryAll returns a nodeList
 // console.log(queryAll('section'))
 
 // Global Variables
 var index = 1;
+
+userInput = {
+    services: [],
+    genre: [],
+    type: [],
+}
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('#landing-page')
@@ -32,56 +39,57 @@ function showCurrent() {
     currentIndex().removeAttribute("class");
 };
 
-// Incomplete logic for populating the genres buttons. Need CSS::before/after code to be done so I know how to target it
-function getGenres() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-            'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-        }
-    };
 
-    fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-        .then(response => response.json())
-        .then((response) => {
-            var genres = Object.values(response)
-            var genreBtns = queryAll('btn element for the genres here')
+// netflix + hulu + kids + movie -> array
 
-            // Check to see that genres is returned
-            // console.log(genres)
+let services = userInput.services.join('%2C%20')
+let genre = userInput.genre.join('%2C%20')
+let type = userInput.type.join('%2C%20')
 
-            // Check to see that genreBtns is a nodeList
-            // console.log(genreBtns)
+fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=18&output_language=en&language=en')
 
-            // ONCE CSS BUTTON CODE HAS BEEN WORKED OUT EDIT CODE TO POPULATE AS INTENDED
-            for (var i = 0; i < genres.length; i++) {
-                genreBtns[i].value = genres[i];
-            }
 
-        })
-        .catch(err => console.error(err));
-}
+// Unused Code
 
-// Incomplete logic for pulling services data. Need to set up css/html for the buttons first
-function getServices() {
-    const options = {
-        method: 'GET',
-        headers: {
-            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-            'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-        }
-    };
-
-    fetch('https://streaming-availability.p.rapidapi.com/countries', options)
-        .then(response => response.json())
-        .then((response) => {
-            var services = Object.keys(response)
-            
-            // Check to see that services is an array of only the streaming services
-            // console.log(services)
-
-            // Looping through the services array
-        })
-        .catch(err => console.error(err));
-}
+// function getGenres() {
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
+    //         }
+    //     };
+    
+    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
+    //         .then(response => response.json())
+    //         .then((response) => {
+    //             var genresKeys = Object.keys(response)
+    //             var genresValues = Object.values(response)
+    //             var genresProps = response
+    //             var btnGroups = getClass('btn-group');
+    
+    //             // Check tos ee that genres props are returned
+    //             // console.log(genresProps)
+    
+    //             // Check to see that genres keys is returned
+    //             // console.log(genresKeys)
+    
+    //             // Check to see that genres values is returned
+    //             // console.log(genresValues)
+    
+    //             for (var i = 0; i < genresKeys.length; i++) {
+    //                 // Create the input tag, setting attributes
+    //                 var genreInput = document.createElement('input')
+    //                 genreInput.setAttribute('type', 'checkbox')
+    //                 genreInput.setAttribute('id', genresKeys[i])
+    //                 btnGroups[1].appendChild(genreInput)
+    
+    //                 // Create the label tag, setting attributes
+    //                 var genreLabel = document.createElement('label')
+    //                 genreLabel.setAttribute('for', genresKeys[i])
+    //                 genreLabel.textContent = genresValues[i];
+    //                 btnGroups[1].appendChild(genreLabel)
+    //             }
+    //         })
+    //         .catch(err => console.error(err));
+// }
