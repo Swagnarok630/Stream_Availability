@@ -107,12 +107,12 @@ h2 {
     width: 150px;
 }
 
-#other-page {
+#streaming-service {
     background-color: #503659;
     color: #DEA6A6;
 }
 
-#other-page .container {
+#streaming-service .btn-group {
     height: 45vh;
     display: flex;
     flex-direction: row;
@@ -120,10 +120,11 @@ h2 {
     align-items: center;
 }
 
-#other-page .container div {
-    height: 350px;
+#streaming-service .btn-group button {
+    height: 250px;
     width: 250px;
     background-color: #DEA6A6;
+    font-size: x-large;
 }
 
 /* styling for sections */
@@ -133,9 +134,39 @@ h2 {
     color: #fcf6c9;
 }
 
+#genres .btn-group {
+    height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#genres .btn-group button {
+    height: 250px;
+    width: 250px;
+    background-color: #fcf6c9;
+    font-size: x-large;
+}
+
 #series-movie {
     background-color: #77BDA8;
     color: #222F73;
+}
+
+#series-movie .btn-group {
+    height: 45vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#series .btn-group button {
+    height: 250px;
+    width: 250px;
+    background-color: #222F73;
+    font-size: x-large;
 }
 
 #results {
