@@ -34,3 +34,4 @@ function showCurrent() {
     // Remove class hidden from current index
     currentIndex().removeAttribute("class");
 };
+
