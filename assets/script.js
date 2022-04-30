@@ -32,25 +32,56 @@ function showCurrent() {
     currentIndex().removeAttribute("class");
 };
 
-const options = {
-	method: 'GET',
-	headers: {
-		'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-		'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-	}
-};
+// Incomplete logic for populating the genres buttons. Need CSS::before/after code to be done so I know how to target it
+function getGenres() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+            'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
+        }
+    };
 
-fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-	.then(response => response.json())
-	.then((response) => {
-        var genres = Object.values(response)
-        // Check to see that genres is returned
-        // console.log(genres)
+    fetch('https://streaming-availability.p.rapidapi.com/genres', options)
+        .then(response => response.json())
+        .then((response) => {
+            var genres = Object.values(response)
+            var genreBtns = queryAll('btn element for the genres here')
 
-        // fo
-        var newBtn = document.createElement('button');
-        var btnContent = document.textContent(genres)
-        newBtn.appendChild(btnContent)
+            // Check to see that genres is returned
+            // console.log(genres)
 
-    })
-	.catch(err => console.error(err));
+            // Check to see that genreBtns is a nodeList
+            // console.log(genreBtns)
+
+            // ONCE CSS BUTTON CODE HAS BEEN WORKED OUT EDIT CODE TO POPULATE AS INTENDED
+            for (var i = 0; i < genres.length; i++) {
+                genreBtns[i].value = genres[i];
+            }
+
+        })
+        .catch(err => console.error(err));
+}
+
+// Incomplete logic for pulling services data. Need to set up css/html for the buttons first
+function getServices() {
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+            'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
+        }
+    };
+
+    fetch('https://streaming-availability.p.rapidapi.com/countries', options)
+        .then(response => response.json())
+        .then((response) => {
+            var services = Object.keys(response)
+            
+            // Check to see that services is an array of only the streaming services
+            // console.log(services)
+
+            // Looping through the services array
+        })
+        .catch(err => console.error(err));
+}
