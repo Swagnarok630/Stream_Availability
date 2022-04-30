@@ -120,11 +120,18 @@ h2 {
     align-items: center;
 }
 
-#streaming-service .btn-group button {
-    height: 250px;
-    width: 250px;
+#streaming-service .btn-group label {
+    display: inline-block;
     background-color: #DEA6A6;
-    font-size: x-large;
+    border: solid 2px #9a3030;
+    color: black;
+    padding: 15px;
+}
+
+#streaming-service .btn-group input{
+    opacity: 0;
+    width: 0;
+    height: 0;
 }
 
 #streaming-service .btn-group checkbox {
