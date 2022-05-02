@@ -125,6 +125,8 @@ h2 {
     background-color: #DEA6A6;
     border: solid 2px #9a3030;
     color: black;
+    font-size: 30px;
+    font-style: Sans-serif;
     padding: 15px;
 }
 
@@ -134,9 +136,17 @@ h2 {
     height: 0;
 }
 
+#video-stream {
+    display: flex;
+    align-items: center;
+    width: 1036px; 
+    height: 583px;
+}
+
 /* styling for sections */
 
 #genres {
+    /* display: none; */
     padding: 2em;
     border: 2px solid red;
     background-color: #222F73;
@@ -164,6 +174,7 @@ h2 {
 }
 
 #series-movie {
+    /* display: none; */
     background-color: #77BDA8;
     color: #222F73;
 }
@@ -184,7 +195,7 @@ h2 {
 }
 
 #results {
+    /* display: none; */
     background-color: #503659;
     color:#77BDA8;
 }
-

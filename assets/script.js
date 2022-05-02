@@ -56,6 +56,23 @@ function randomizePage() {
         }
     };
 
+// Is this still needed? I thought we got rid of dynamic genre population due to key usage
+//     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
+//         .then(response => response.json())
+//         .then((response) => {
+//             var genres = Object.values(response)
+//             var genreBtns = queryAll('btn element for the genres here')
+
+//             // Check to see that genres is returned
+//             // console.log(genres)
+
+//             // Check to see that genreBtns is a nodeList
+//             // console.log(genreBtns)
+            
+//             // ONCE CSS BUTTON CODE HAS BEEN WORKED OUT EDIT CODE TO POPULATE AS INTENDED
+//             for (var i = 0; i < genres.length; i++) {
+//                 genreBtns[i].value = genres[i];
+
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
@@ -107,6 +124,26 @@ function userRequest() {
         .then(response => response.json())
         
         .then((response) => {
+
+            var services = Object.keys(response)
+            
+            // Check to see that services is an array of only the streaming services
+            // console.log(services)
+
+            // Looping through the services array
+        this.getServices(response)
+        })
+        .catch(err => console.error(err));
+    
+    // function search() {
+    //     this.getServices(document.querySelector(".btn-group"))
+    // }
+}
+
+// document.querySelector(".btn-group").addEventListener("click", function () {
+//     getServices().search()
+// })
+
             // Statements with what to do with data pulled by the user
             console.log(response)
         })
@@ -119,47 +156,3 @@ setTimeout( () => {
 );
 
 
-// Unused Code
-
-// function getGenres() {
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-    //         }
-    //     };
-    
-    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-    //         .then(response => response.json())
-    //         .then((response) => {
-    //             var genresKeys = Object.keys(response)
-    //             var genresValues = Object.values(response)
-    //             var genresProps = response
-    //             var btnGroups = getClass('btn-group');
-    
-    //             // Check tos ee that genres props are returned
-    //             // console.log(genresProps)
-    
-    //             // Check to see that genres keys is returned
-    //             // console.log(genresKeys)
-    
-    //             // Check to see that genres values is returned
-    //             // console.log(genresValues)
-    
-    //             for (var i = 0; i < genresKeys.length; i++) {
-    //                 // Create the input tag, setting attributes
-    //                 var genreInput = document.createElement('input')
-    //                 genreInput.setAttribute('type', 'checkbox')
-    //                 genreInput.setAttribute('id', genresKeys[i])
-    //                 btnGroups[1].appendChild(genreInput)
-    
-    //                 // Create the label tag, setting attributes
-    //                 var genreLabel = document.createElement('label')
-    //                 genreLabel.setAttribute('for', genresKeys[i])
-    //                 genreLabel.textContent = genresValues[i];
-    //                 btnGroups[1].appendChild(genreLabel)
-    //             }
-    //         })
-    //         .catch(err => console.error(err));
-// }
