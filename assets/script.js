@@ -53,7 +53,7 @@ function getGenres() {
 
             // Check to see that genreBtns is a nodeList
             // console.log(genreBtns)
-
+            
             // ONCE CSS BUTTON CODE HAS BEEN WORKED OUT EDIT CODE TO POPULATE AS INTENDED
             for (var i = 0; i < genres.length; i++) {
                 genreBtns[i].value = genres[i];
@@ -82,6 +82,15 @@ function getServices() {
             // console.log(services)
 
             // Looping through the services array
+        this.getServices(response)
         })
         .catch(err => console.error(err));
+    
+    // function search() {
+    //     this.getServices(document.querySelector(".btn-group"))
+    // }
 }
+
+// document.querySelector(".btn-group").addEventListener("click", function () {
+//     getServices().search()
+// })
