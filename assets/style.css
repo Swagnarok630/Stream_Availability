@@ -130,7 +130,7 @@ h2 {
     padding: 15px;
 }
 
-#streaming-service .btn-group input{
+#streaming-service .btn-group input {
     opacity: 0;
     width: 0;
     height: 0;
@@ -147,21 +147,28 @@ h2 {
 
 #genres {
     /* display: none; */
+    padding: 2em;
+    border: 2px solid red;
     background-color: #222F73;
     color: #fcf6c9;
 }
 
 #genres .btn-group {
+    max-width: 80vw;
+    border: 2px solid red;
+    padding: 2em;
     height: 45vh;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
 
-#genres .btn-group button {
-    height: 250px;
-    width: 250px;
+#genres .btn-group label {
+    margin: 1em;
+    height: 50px;
+    width: 100px;
     background-color: #fcf6c9;
     font-size: x-large;
 }
