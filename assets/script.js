@@ -12,9 +12,9 @@ var index = 1;
 var randomizedPageNumber = [];
 
 userInput = {
-    services: ['netflix'],
-    genre: ['5'],
-    type: ['movie'],
+    services: [],
+    genre: [],
+    type: [],
 }
 
 // API KEYS AND API AUTH
@@ -25,14 +25,6 @@ var apiKeys = {
     keysArr: [this.chase, this.tony, this.darryl]
 }
 
-var options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-        'X-RapidAPI-Key': apiKeys.tony
-    }
-};
-
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
 
@@ -42,7 +34,7 @@ function totalIndex() {
 }
 
 // Loops over all nodes and returns the node that the user is currently on
-function currentIndex() {
+function currentNode() {
     for (var i = 0; i < forListeners.length; i++) {
         // If the current node data-question value in the for loop matches index value
         if (forListeners[i].dataset.index === index.toString()) {
@@ -52,17 +44,55 @@ function currentIndex() {
 };
 
 // Function that hides all other noncurrent nodes and shows current node
-function showCurrent() {
+function showCurrentNode() {
     // Loops over all nodes and adds class hidden
     for (var i = 0; i < forListeners.length; i++) {
         forListeners[i].setAttribute("id", "hidden");
     };
     // Remove class hidden from current index
-    currentIndex().removeAttribute("id");
+    currentNode().removeAttribute("id");
 };
 
-// Main API function that grabs API data and manipulates it
+function grabUserInput() {
+    inputs = queryAll('input')
+
+    // Looping through all input nodes
+    for (var i = 0; i < inputs.length; i++) {
+        // If the current has tag input and is checked
+        if (inputs[i].checked) {
+            // Check to see if inputs are checked.
+            console.log('I was checked ' + inputs[i].id)
+
+            // Now we store the user data in userInput
+            // For services
+            if (inputs[i].parentNode.matches('#services-btn-container')) {
+                userInput.services.push(inputs[i].id)
+            }
+            // For genres
+            if (inputs[i].parentNode.matches('#genres-btn-container')) {
+                userInput.genre.push(inputs[i].id)
+            }
+            // For type
+            if (inputs[i].parentNode.matches('#type-btn-container')) {
+                userInput.type.push(inputs[i].id)
+            }
+
+            // Check to see if userInput has values pushed
+            // console.log(userInput)
+        }
+    }
+}
+
+// Main API function that grabs API data
 function userRequest() {
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+            'X-RapidAPI-Key': apiKeys.tony
+        }
+    };
+
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
@@ -77,16 +107,8 @@ function userRequest() {
         .then(response => {
             // We randomize the page based on how many pages there are on total_pages
             randomizedPageNumber.push(Math.floor((Math.random() * response.total_pages) + 1))
-            // We return the data object for a second time to manipulate the data on the next .then
-            return response
-        })
-        .then(response => {
-            // Check to see if the data we're going to use is valid
-            // console.log(response)
-            // console.log(randomizedPageNumber)
-
-            // Statements with what to do with data pulled by the user
-            // Statement 1
+            // We return the data object for a second time to manipulate the data on later function
+            return response;
         })
         .catch(err => console.error(err));
 }
@@ -101,12 +123,32 @@ getId('entire-container').addEventListener('click', function(targ) {
         } else {
         // We increase the current number index and show the current index
             index++;
-            showCurrent()
+            showCurrentNode()
         }
     }
-})
 
-// userRequest()
+    // If the target also has the Id generate-shows
+    if (targ.target && targ.target.matches('#generate-shows')) {
+        // If the index is equal to the total amount of pages we have, we return
+        if (index === parseInt(totalIndex())) {
+            console.log('Cant go any further! Theres no more sections left!')
+            return
+        } else {
+        // We increase the current number index and show the current index
+            index++;
+            showCurrentNode()
+        }
+
+        // We grab user input
+        grabUserInput()
+
+        // We do an API request for data 
+        userRequest()
+
+        // Finally, we display manipulated data 
+        // Final function to be made. Could be separate from userReq or the same
+    }
+})
 
 // Unused Code
 
