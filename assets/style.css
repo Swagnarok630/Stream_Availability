@@ -125,38 +125,56 @@ h2 {
     background-color: #DEA6A6;
     border: solid 2px #9a3030;
     color: black;
+    font-size: 30px;
+    font-style: Sans-serif;
     padding: 15px;
 }
 
-#streaming-service .btn-group input{
+#streaming-service .btn-group input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
+#video-stream {
+    display: flex;
+    align-items: center;
+    width: 1036px; 
+    height: 583px;
+}
+
 /* styling for sections */
 
 #genres {
+    /* display: none; */
+    padding: 2em;
+    border: 2px solid red;
     background-color: #222F73;
     color: #fcf6c9;
 }
 
 #genres .btn-group {
+    max-width: 80vw;
+    border: 2px solid red;
+    padding: 2em;
     height: 45vh;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
 }
 
-#genres .btn-group button {
-    height: 250px;
-    width: 250px;
+#genres .btn-group label {
+    margin: 1em;
+    height: 50px;
+    width: 100px;
     background-color: #fcf6c9;
     font-size: x-large;
 }
 
 #series-movie {
+    /* display: none; */
     background-color: #77BDA8;
     color: #222F73;
 }
@@ -177,7 +195,7 @@ h2 {
 }
 
 #results {
+    /* display: none; */
     background-color: #503659;
     color:#77BDA8;
 }
-
