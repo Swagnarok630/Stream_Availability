@@ -10,6 +10,7 @@ var getClass = element => document.getElementsByClassName(element)
 // Global Variables
 var index = 1;
 var randomizedPageNumber = [];
+var showsDataHolder = [];
 
 userInput = {
     services: [],
@@ -17,7 +18,7 @@ userInput = {
     type: [],
 }
 
-// API KEYS AND API AUTH
+// API KEYS
 var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
@@ -84,33 +85,99 @@ function grabUserInput() {
 }
 
 // Main API function that grabs API data
-function userRequest() {
+async function userRequest() {
     var options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-            'X-RapidAPI-Key': apiKeys.tony
+            'X-RapidAPI-Key': apiKeys.darryl
         }
     };
 
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
-    
     var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en'
 
     // console.log(randomizedPageNumber)
+    // We fetch to randomize the a page number based on total_pages
     fetch(apiUrl, options)
         .then(response => {
             return response.json()
         })
         .then(response => {
-            // We randomize the page based on how many pages there are on total_pages
-            randomizedPageNumber.push(Math.floor((Math.random() * response.total_pages) + 1))
-            // We return the data object for a second time to manipulate the data on later function
-            return response;
+            // Using math.floor to randomize page
+            randomizedNumber = Math.floor((Math.random() * response.total_pages) + 1)
+            return randomizedNumber.toString()
+        })
+        
+    // We catch the returned promise and use it to dynamically change the URL
+    .then(randomizedNumber => {
+        // Console log the page number
+        console.log('The user is on page: ' + randomizedNumber)
+
+        return fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&page=' + randomizedNumber + '&output_language=en&language=en', options)
+    })
+        .then(response => {
+            // We json the response
+            return response.json()
+        })
+        .then(response => {
+            // We display the shows passing the response object in
+            displayShows(response)
         })
         .catch(err => console.error(err));
+}
+
+function displayShows(response) {
+    var shows = []
+    // Looping through the response object 3 times to grab 3 shows
+    for (var i = 0; i < response.results.length; i++) {
+        // We loop through response.results and assign it a variable
+        var show = response.results[i]
+        // We push that show into shows array
+        shows.push(show)
+    }
+    // Check to see that shows has all results
+    // console.log(shows)
+
+    var showContainers = queryAll('.show-container')
+
+    // Now we loop through containers and shows
+    for (var i = 0; i < showContainers.length; i++) {
+        // We grab a random show first
+        show = shows[i]
+
+        console.log(show.title)
+
+        // Creating title tag, setting its id, and appending it to the page
+        var title = document.createElement('h1')
+        title.setAttribute('id', 'title')
+        var titleContent = document.createTextNode(show.title)
+        title.appendChild(titleContent)
+        showContainers[i].appendChild(title)
+
+        // We do the same for the year, cast, and overview
+        var year = document.createElement('h2')
+        year.setAttribute('id', 'title')
+        var yearContent = document.createTextNode(show.year)
+        year.appendChild(yearContent)
+        showContainers[i].appendChild(year)
+
+        // Cast
+        var cast = document.createElement('h3')
+        cast.setAttribute('id', 'title')
+        var castContent = document.createTextNode(show.cast.join(', '))
+        cast.appendChild(castContent)
+        showContainers[i].appendChild(cast)
+
+        // Overview
+        var overview = document.createElement('p')
+        overview.setAttribute('id', 'overview')
+        var overviewContent = document.createTextNode(show.overview)
+        overview.appendChild(overviewContent)
+        showContainers[i].appendChild(overview)
+    }
 }
 
 getId('entire-container').addEventListener('click', function(targ) {
@@ -142,11 +209,10 @@ getId('entire-container').addEventListener('click', function(targ) {
         // We grab user input
         grabUserInput()
 
-        // We do an API request for data 
+        // We do an API request for data.
         userRequest()
 
-        // Finally, we display manipulated data 
-        // Final function to be made. Could be separate from userReq or the same
+        console.log(userInput)
     }
 })
 
@@ -196,25 +262,25 @@ getId('entire-container').addEventListener('click', function(targ) {
 // }
 
 // Looping keys code
-    // // Looping through apiKeys
-    // for (var i = 0; i < apiKeys.length; i++) {
-    //     // If the API data is good, we json() it.
-    //     if (response === 400) {
-    //         response.json()
-    //         // We break the loop so it doesn't keep looping till apikeys.length
-    //         break;
+//     // Looping through apiKeys
+//     for (var i = 0; i < apiKeys.length; i++) {
+//         // If the API data is good, we json() it.
+//         if (response === 200) {
+//             response.json()
+//             // We break the loop so it doesn't keep looping till apikeys.length
+//             break;
 
-    //     // If the current API key is equal to the key we already have, continue aka skip current key
-    //     } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"] && response !== 400) {
-    //         continue;
+//         // If the current API key is equal to the key we already have, continue aka skip current key
+//         } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"] && response !== 400) {
+//             continue;
 
-    //     // If the response comes out invalid
-    //     } else if (response !== 400) {
-    //         // Set the current iteration key equal to the options API key
-    //         options.headers["X-RapidAPI-Key"] = apiKeys[i];
-    //         // Fetch with current key
-    //         fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
+//         // If the response comes out invalid
+//         } else if (response !== 200) {
+//             // Set the current iteration key equal to the options API key
+//             options.headers["X-RapidAPI-Key"] = apiKeys[i];
+//             // Fetch with current key
+//             fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
 
-    //     } else {
-    //         console.log('KeyLoop is broken fix me')
-    //     }
+//         } else { 
+//             console.log('KeyLoop is broken fix me')
+//         }
