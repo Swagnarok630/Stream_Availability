@@ -10,7 +10,7 @@ section {
     max-height: 100%;
 }
 
-.hidden {
+#hidden {
     display: none;
 }
 
@@ -26,7 +26,7 @@ h2 {
     padding: 1.25em;
 }
 
-#landing-page {
+.landing-page {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -34,7 +34,7 @@ h2 {
     color: #77BDA8;
 }
 
-#landing-page h1 {
+.landing-page h1 {
     text-align: center;
     padding-bottom: 0px;
 }
@@ -43,7 +43,7 @@ h2 {
     margin-right: .5em;
 }
 
-#landing-page h2 {
+.landing-page h2 {
     text-align: center;
 }
 
@@ -107,12 +107,12 @@ h2 {
     width: 150px;
 }
 
-#streaming-service {
+.streaming-service {
     background-color: #503659;
     color: #DEA6A6;
 }
 
-#streaming-service .btn-group {
+.streaming-service .btn-group {
     height: 45vh;
     display: flex;
     flex-direction: row;
@@ -120,30 +120,40 @@ h2 {
     align-items: center;
 }
 
-#streaming-service .btn-group label {
+.streaming-service .btn-group label {
     display: inline-block;
     background-color: #DEA6A6;
     border: solid 2px #9a3030;
     color: black;
+    font-size: 30px;
+    font-style: Sans-serif;
     padding: 15px;
 }
 
-#streaming-service .btn-group input {
+.streaming-service .btn-group input {
     opacity: 0;
     width: 0;
     height: 0;
 }
 
+#video-stream {
+    display: flex;
+    align-items: center;
+    width: 1036px; 
+    height: 583px;
+}
+
 /* styling for sections */
 
-#genres {
+.genres {
+    /* display: none; */
     padding: 2em;
     border: 2px solid red;
     background-color: #222F73;
     color: #fcf6c9;
 }
 
-#genres .btn-group {
+.genres .btn-group {
     max-width: 80vw;
     border: 2px solid red;
     padding: 2em;
@@ -155,7 +165,7 @@ h2 {
     align-items: center;
 }
 
-#genres .btn-group label {
+.genres .btn-group label {
     margin: 1em;
     height: 50px;
     width: 100px;
@@ -163,12 +173,13 @@ h2 {
     font-size: x-large;
 }
 
-#series-movie {
+.series-movie {
+    /* display: none; */
     background-color: #77BDA8;
     color: #222F73;
 }
 
-#series-movie .btn-group {
+.series-movie .btn-group {
     height: 45vh;
     display: flex;
     flex-direction: row;
@@ -176,15 +187,15 @@ h2 {
     align-items: center;
 }
 
-#series-movie .btn-group button {
+.series-movie .btn-group button {
     height: 250px;
     width: 250px;
     background-color: #222F73;
     font-size: x-large;
 }
 
-#results {
+.results {
+    /* display: none; */
     background-color: #503659;
     color:#77BDA8;
 }
-
