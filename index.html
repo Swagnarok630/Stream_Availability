@@ -9,141 +9,155 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <body>
-    <section id="landing-page" class="hidden" data-index="1">
-        <h1 class="hello">
-            Hello,
-        </h1>
-
-        <div class="username-container">
-            <h1 id="username" contenteditable="true">
-            
+    <div id="entire-container">
+        <section class="landing-page" data-index="1">
+            <h1 class="hello">
+                Hello,
             </h1>
 
-            <div class="arrow-icon-container" id="btn">
-                <i class="gg-push-chevron-right-o"></i>
+            <div class="username-container">
+                <h1 id="username" contenteditable="true">
+                
+                </h1>
+
+                <div class="arrow-icon-container">
+                    <i class="gg-push-chevron-right-o" id="btn"></i>
+                </div>
             </div>
-        </div>
 
-        <h2>
-            Let's pick something to watch today.
-        </h2>
+            <h2>
+                Let's pick something to watch today.
+            </h2>
+        </section>
 
-    </section>
+        <section class="streaming-service" id="hidden" data-index="2">
 
+            <h1 class="hello">
+                What streaming service do you prefer?
+            </h1>
 
-    <!--section class="hidden"-->
-    <section id="streaming-service" data-index="2">
+            <div class="btn-group" id="" role="group" aria-label="Basic outlined example">
+                    <input type="checkbox" id="netflix" name="netflix" value="Netflix">
+                    <label for="netflix">Netflix</label>
+                    <input type="checkbox" id="hulu" name="hulu" value="Hulu">
+                    <label for="hulu">Hulu</label>
+                    <input type="checkbox" id="apple" name="apple" value="AppleTV Plus">
+                    <label for="apple">AppleTV Plus</label>
+                    <input type="checkbox" id="prime" name="prime" value="AmazonPrime Video">
+                    <label for="prime">AmazonPrime Video</label>
+                    <input type="checkbox" id="hbo" name="hbo" value="HBO Max">
+                    <label for="hbo">HBO Max</label>
+                    <input type="checkbox" id="disney" name="disney" value="Disney+">
+                    <label for="disney">Disney+</button>
+            </div>
 
-        <h1 class="hello">
-            What streaming service do you prefer?
-        </h1>
+            <div class="arrow-icon-container">
+                <i class="gg-push-chevron-right-o" id="btn"></i>
+            </div>
+        </section>
 
-        <div class="btn-group" id="" role="group" aria-label="Basic outlined example">
-                <input type="checkbox" id="netflix" name="netflix" value="Netflix">
-                <label for="netflix">Netflix</label>
-                <input type="checkbox" id="hulu" name="hulu" value="Hulu">
-                <label for="hulu">Hulu</label>
-                <input type="checkbox" id="apple" name="apple" value="AppleTV Plus">
-                <label for="apple">AppleTV Plus</label>
-                <input type="checkbox" id="prime" name="prime" value="AmazonPrime Video">
-                <label for="prime">AmazonPrime Video</label>
-                <input type="checkbox" id="hbo" name="hbo" value="HBO Max">
-                <label for="hbo">HBO Max</label>
-                <input type="checkbox" id="disney" name="disney" value="Disney+">
-                <label for="disney">Disney+</button>
-        </div>
-    </section>
+        <section class="genres" id="hidden" data-index="3">
+            <h1 class="hello">
+                What genre do want to watch?
+            </h1>
 
-    <section id="genres">
-        <h1 class="hello">
-            What genre do want to watch?
-        </h1>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <input type="checkbox" id=“1” name=“biography” value=“Biography”>
+                    <label for=“1”>Biography</label>
+                <input type="checkbox" id=“2” name=“film-noir” value=“Film-Noir”>
+                    <label for=“2”>Film Noir</label>
+                <input type="checkbox" id=“3” name=“game-show” value=“Game-Show>
+                    <label for=“3”>Game Show</label>
+                <input type="checkbox" id=“4” name=“musical” value=“Musical”>
+                    <label for=“4”>Musical</label>
+                <input type="checkbox" id=“5” name=“sport” value=“Sport”>
+                    <label for=“5”>Sport</label>
+                <input type="checkbox" id=“6” name=“short” value=“Short”>
+                    <label for=“6”>Short</label>
+                <input type="checkbox" id=“7” name=“adult” value=“Adult”>
+                    <label for=“7”>Adult</label>
+                <input type="checkbox" id=“12” name=“adventure” value=“Adventure”>
+                    <label for=“12”>Adventure</label>
+                <input type="checkbox" id=“14” name=“fantasy value=“Fantasy”>
+                    <label for=“14”>Fantasy</label>
+                <input type="checkbox" id=“16” name=“animation” value=“Animation”>
+                    <label for=“16”>Animation</label>
+                <input type="checkbox" id=“18” name=“drama” value=“Drama”>
+                    <label for=“18”>Drama</label>
+                <input type="checkbox" id=“27” name=“horror” value=“Horror”>
+                    <label for=“27”>Horror</label>
+                <input type="checkbox" id=“28” name=“action” value=“Action”>
+                    <label for=“28”>Action</label>
+                <input type="checkbox" id=“35” name=“comedy” value=“Comedy”>
+                    <label for=“35”>Comedy</label>
+                <input type="checkbox" id=“36” name=“history” value=“History”>
+                    <label for=“36”>History</label>
+                <input type="checkbox" id=“37” name=“western” value=“Western”>
+                    <label for=“37”>Western</label>
+                <input type="checkbox" id=“53” name=“thriller” value=“Thriller”>
+                    <label for=“53”>Thriller</label>
+                <input type="checkbox" id=“80” name=“crime” value=“Crime”>
+                    <label for=“80”>Crime</label>
+                <input type="checkbox" id=“99” name=“documentary” value=“Documentary”>
+                    <label for=“99”>Documentary</label>
+                <input type="checkbox" id=“878” name=“science-fiction” value=“Science-Fiction”>
+                    <label for=“878”>Science Fiction</label>
+                <input type="checkbox" id=“9648” name=“mystery” value=“Mystery”>
+                    <label for=“9648”>Mystery</label>
+                <input type="checkbox" id=“10402” name=“music” value=“Music”>
+                    <label for=“10402”>Music</label>
+                <input type="checkbox" id=“10749” name=“romance” value=“Romance”>
+                    <label for=“10749”>Romance</label>
+                <input type="checkbox" id="10751" name=“family” value=“Family”>
+                    <label for=“10751”>Family</label>
+                <input type="checkbox" id=“10752” name=“war” value=“War”>
+                    <label for=“10752”>War</label>
+                <input type="checkbox" id=“10763” name=“news” value=“News”>
+                    <label for=“10763”>News</label>
+                <input type="checkbox" id=“10764” name=“reality” value=“Reality”>
+                    <label for=“10764”>Reality</label>
+                <input type="checkbox" id=“10767” name=“talk-show” value=“Talk-Show”>
+                    <label for=“10767”>Talk Show</label>
+            </div>
 
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <input type="checkbox" id=“1” name=“biography” value=“Biography”>
-                <label for=“1”>Biography</label>
-            <input type="checkbox" id=“2” name=“film-noir” value=“Film-Noir”>
-                <label for=“2”>Film Noir</label>
-            <input type="checkbox" id=“3” name=“game-show” value=“Game-Show>
-                <label for=“3”>Game Show</label>
-            <input type="checkbox" id=“4” name=“musical” value=“Musical”>
-                <label for=“4”>Musical</label>
-            <input type="checkbox" id=“5” name=“sport” value=“Sport”>
-                <label for=“5”>Sport</label>
-            <input type="checkbox" id=“6” name=“short” value=“Short”>
-                <label for=“6”>Short</label>
-            <input type="checkbox" id=“7” name=“adult” value=“Adult”>
-                <label for=“7”>Adult</label>
-            <input type="checkbox" id=“12” name=“adventure” value=“Adventure”>
-                <label for=“12”>Adventure</label>
-            <input type="checkbox" id=“14” name=“fantasy value=“Fantasy”>
-                <label for=“14”>Fantasy</label>
-            <input type="checkbox" id=“16” name=“animation” value=“Animation”>
-                <label for=“16”>Animation</label>
-            <input type="checkbox" id=“18” name=“drama” value=“Drama”>
-                <label for=“18”>Drama</label>
-            <input type="checkbox" id=“27” name=“horror” value=“Horror”>
-                <label for=“27”>Horror</label>
-            <input type="checkbox" id=“28” name=“action” value=“Action”>
-                <label for=“28”>Action</label>
-            <input type="checkbox" id=“35” name=“comedy” value=“Comedy”>
-                <label for=“35”>Comedy</label>
-            <input type="checkbox" id=“36” name=“history” value=“History”>
-                <label for=“36”>History</label>
-            <input type="checkbox" id=“37” name=“western” value=“Western”>
-                <label for=“37”>Western</label>
-            <input type="checkbox" id=“53” name=“thriller” value=“Thriller”>
-                <label for=“53”>Thriller</label>
-            <input type="checkbox" id=“80” name=“crime” value=“Crime”>
-                <label for=“80”>Crime</label>
-            <input type="checkbox" id=“99” name=“documentary” value=“Documentary”>
-                <label for=“99”>Documentary</label>
-            <input type="checkbox" id=“878” name=“science-fiction” value=“Science-Fiction”>
-                <label for=“878”>Science Fiction</label>
-            <input type="checkbox" id=“9648” name=“mystery” value=“Mystery”>
-                <label for=“9648”>Mystery</label>
-            <input type="checkbox" id=“10402” name=“music” value=“Music”>
-                <label for=“10402”>Music</label>
-            <input type="checkbox" id=“10749” name=“romance” value=“Romance”>
-                <label for=“10749”>Romance</label>
-            <input type="checkbox" id="10751" name=“family” value=“Family”>
-                <label for=“10751”>Family</label>
-            <input type="checkbox" id=“10752” name=“war” value=“War”>
-                <label for=“10752”>War</label>
-            <input type="checkbox" id=“10763” name=“news” value=“News”>
-                <label for=“10763”>News</label>
-            <input type="checkbox" id=“10764” name=“reality” value=“Reality”>
-                <label for=“10764”>Reality</label>
-            <input type="checkbox" id=“10767” name=“talk-show” value=“Talk-Show”>
-                <label for=“10767”>Talk Show</label>
-        </div>
-    </section>
+            <div class="arrow-icon-container">
+                <i class="gg-push-chevron-right-o" id="btn"></i>
+            </div>
+        </section>
 
-    <section id="series-movie" data-index="2">
-        <h1 class="hello">
-            What Series or Movie do you want to see?
-        </h1>
+        <section class="series-movie" id="hidden" data-index="4">
+            <h1 class="hello">
+                What Series or Movie do you want to see?
+            </h1>
 
-        <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button">TV Series</button>
-            <button type="button">Movies</button>
-        </div>
-    </section>
+            <div class="btn-group" role="group" aria-label="Basic outlined example">
+                <button type="button">TV Series</button>
+                <button type="button">Movies</button>
+            </div>
 
-    <section id="results" data-index="2">
-        <h1 class="hello">
-            Your choice of *insert name of movie or series here*
-        </h1>
+            <div class="arrow-icon-container">
+                <i class="gg-push-chevron-right-o" id="btn"></i>
+            </div>
+        </section>
 
-        <div>
-        <iframe tabindex="-1" id="video-stream" src="https://www.youtube.com/watch?v=Yy0lhKK0s7g"></iframe>
-        </div>
+        <section class="results" id="hidden" data-index="5">
+            <h1 class="hello">
+                Your choice of *insert name of movie or series here*
+            </h1>
 
-        <div>
-            <!-- <img src="url" alt="alternatetext"> -->
-        </div>
+            <div>
+            <!-- <iframe tabindex="-1" id="video-stream" src="https://www.youtube.com/watch?v=Yy0lhKK0s7g"></iframe> -->
+            </div>
 
-    </section>
+            <div>
+                <!-- <img src="url" alt="alternatetext"> -->
+            </div>
+
+            <div class="arrow-icon-container">
+                <i class="gg-push-chevron-right-o" id="btn"></i>
+            </div>
+        </section>
+    </div>
 
     <script src="./assets/script.js"></script>
 
