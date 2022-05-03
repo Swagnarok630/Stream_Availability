@@ -56,23 +56,6 @@ function randomizePage() {
         }
     };
 
-// Is this still needed? I thought we got rid of dynamic genre population due to key usage
-//     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-//         .then(response => response.json())
-//         .then((response) => {
-//             var genres = Object.values(response)
-//             var genreBtns = queryAll('btn element for the genres here')
-
-//             // Check to see that genres is returned
-//             // console.log(genres)
-
-//             // Check to see that genreBtns is a nodeList
-//             // console.log(genreBtns)
-            
-//             // ONCE CSS BUTTON CODE HAS BEEN WORKED OUT EDIT CODE TO POPULATE AS INTENDED
-//             for (var i = 0; i < genres.length; i++) {
-//                 genreBtns[i].value = genres[i];
-
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
@@ -81,26 +64,33 @@ function randomizePage() {
         .then(response => {
             // Looping through apiKeys
             for (var i = 0; i < apiKeys.length; i++) {
+                // If the API data is good, we json() it.
+                if (response.ok) {
+                    response.json()
+                    // We break the loop so it doesn't keep looping till apikeys.length
+                    break;
+
                 // If the current API key is equal to the key we already have, continue aka skip current key
-                if (apiKeys[i] === options.headers["X-RapidAPI-Key"]) {
+                } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"]) {
                     continue;
+
                 // If the response comes out invalid
                 } else if (!response.ok) {
                     // Set the current iteration key equal to the options API key
                     options.headers["X-RapidAPI-Key"] = apiKeys[i];
                     // Fetch with current key
                     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
+
                 } else {
-                    // Once the fetch request is valid, we will json that data
-                    response.json()
-                    // We will also break the loop so it doesn't keep trying to loop until apiKeys.length
-                    break;
+                    console.log('KeyLoop is broken fix me')
                 }
-            }
+            };
         })
+        // We finally randomize the total_pages data we pulled from the API
         .then((response) => {
             randomizedPageNumber.push(Math.floor((Math.random() * response.total_pages) + 1))
         })
+        
         .catch(err => console.error(err));
 }
 
@@ -121,29 +111,33 @@ function userRequest() {
 
     console.log(randomizedPageNumber)
     fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&page=' + randomizedPageNumber + '&output_language=en&language=en', options)
-        .then(response => response.json())
+        .then(response => {
+            // Looping through apiKeys
+            for (var i = 0; i < apiKeys.length; i++) {
+                // If the API data is good, we json() it.
+                if (response.ok) {
+                    response.json()
+                    // We break the loop so it doesn't keep looping till apikeys.length
+                    break;
+
+                // If the current API key is equal to the key we already have, continue aka skip current key
+                } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"]) {
+                    continue;
+
+                // If the response comes out invalid
+                } else if (!response.ok) {
+                    // Set the current iteration key equal to the options API key
+                    options.headers["X-RapidAPI-Key"] = apiKeys[i];
+                    // Fetch with current key
+                    fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
+
+                } else {
+                    console.log('KeyLoop is broken fix me')
+                }
+            };
+        })
         
         .then((response) => {
-
-            var services = Object.keys(response)
-            
-            // Check to see that services is an array of only the streaming services
-            // console.log(services)
-
-            // Looping through the services array
-        this.getServices(response)
-        })
-        .catch(err => console.error(err));
-    
-    // function search() {
-    //     this.getServices(document.querySelector(".btn-group"))
-    // }
-}
-
-// document.querySelector(".btn-group").addEventListener("click", function () {
-//     getServices().search()
-// })
-
             // Statements with what to do with data pulled by the user
             console.log(response)
         })
@@ -156,3 +150,47 @@ setTimeout( () => {
 );
 
 
+// Unused Code
+
+// function getGenres() {
+    //     const options = {
+    //         method: 'GET',
+    //         headers: {
+    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
+    //         }
+    //     };
+    
+    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
+    //         .then(response => response.json())
+    //         .then((response) => {
+    //             var genresKeys = Object.keys(response)
+    //             var genresValues = Object.values(response)
+    //             var genresProps = response
+    //             var btnGroups = getClass('btn-group');
+    
+    //             // Check tos ee that genres props are returned
+    //             // console.log(genresProps)
+    
+    //             // Check to see that genres keys is returned
+    //             // console.log(genresKeys)
+    
+    //             // Check to see that genres values is returned
+    //             // console.log(genresValues)
+    
+    //             for (var i = 0; i < genresKeys.length; i++) {
+    //                 // Create the input tag, setting attributes
+    //                 var genreInput = document.createElement('input')
+    //                 genreInput.setAttribute('type', 'checkbox')
+    //                 genreInput.setAttribute('id', genresKeys[i])
+    //                 btnGroups[1].appendChild(genreInput)
+    
+    //                 // Create the label tag, setting attributes
+    //                 var genreLabel = document.createElement('label')
+    //                 genreLabel.setAttribute('for', genresKeys[i])
+    //                 genreLabel.textContent = genresValues[i];
+    //                 btnGroups[1].appendChild(genreLabel)
+    //             }
+    //         })
+    //         .catch(err => console.error(err));
+// }
