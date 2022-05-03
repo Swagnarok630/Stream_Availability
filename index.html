@@ -15,14 +15,8 @@
                 Hello,
             </h1>
 
-            <div class="username-container">
-                <h1 id="username" contenteditable="true">
-                
-                </h1>
-
-                <div class="arrow-icon-container">
-                    <i class="gg-push-chevron-right-o" id="btn"></i>
-                </div>
+            <div class="arrow-icon-container">
+                <i class="gg-push-chevron-right-o" id="btn"></i>
             </div>
 
             <h2>
@@ -36,7 +30,7 @@
             </h1>
 
             <div class="btn-group" id="services-btn-container" role="group" aria-label="Basic outlined example">
-                <input type="checkbox" id="netflix" name="netflix" value="Netflix">
+                <input type="checkbox" id="netflix" nservices-btn-ame="netflix" value="Netflix">
                     <label for="netflix">Netflix</label>
                 <input type="checkbox" id="hulu" name="hulu" value="Hulu">
                     <label for="hulu">Hulu</label>
@@ -130,30 +124,28 @@
             </h1>
 
             <div class="btn-group" id="type-btn-container" role="group" aria-label="Basic outlined example">
-                <button type="button" id="series">TV Series</button>
-                <button type="button" id="movie">Movies</button>
-            </div>
-
-            <div class="arrow-icon-container">
-                <i class="gg-push-chevron-right-o" id="btn"></i>
-            </div>
-        </section>
-
-        <section class="results" id="hidden" data-index="5">
-            <h1 class="hello">
-                Your choice of *insert name of movie or series here*
-            </h1>
-
-            <div>
-            <!-- <iframe tabindex="-1" id="video-stream" src="https://www.youtube.com/watch?v=Yy0lhKK0s7g"></iframe> -->
-            </div>
-
-            <div>
-                <!-- <img src="url" alt="alternatetext"> -->
+                <input type="checkbox" id="movie" name="movie" value="Movie">
+                    <label for="movie">Movie</label>
+                <input type="checkbox" id="show" name="show" value="Show">
+                    <label for="show">Show</label>
             </div>
 
             <div class="arrow-icon-container">
                 <i class="gg-push-chevron-right-o" id="generate-shows"></i>
+            </div>
+        </section>
+
+        <section class="results" data-index="5" id="hidden">
+            <div class="show-container">
+
+            </div>
+
+            <div class="show-container">
+
+            </div>
+
+            <div class="show-container">
+
             </div>
         </section>
     </div>
