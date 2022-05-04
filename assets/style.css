@@ -4,11 +4,9 @@
 }
 
 section {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
+    height: 100vh;
+    max-height: 100%;
 }
 
 #hidden {
@@ -206,6 +204,7 @@ h2 {
     padding: 2em;
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -213,9 +212,8 @@ h2 {
     border: 2px solid red;
     margin: 2em;
     padding: 2em;
-    width: 27vw;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
