@@ -248,7 +248,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         if (index === parseInt(totalIndex())) {
             console.log('Cant go any further! Theres no more sections left!')
             return
-        } else if {
+        } else {
         // We increase the current number index and show the current index
             index++;
             showCurrentNode()
