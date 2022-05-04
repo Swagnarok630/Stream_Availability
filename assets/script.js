@@ -90,7 +90,7 @@ async function userRequest() {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-            'X-RapidAPI-Key': apiKeys.darryl
+            'X-RapidAPI-Key': [apiKeys.darryl, apiKeys.chase, apiKeys.tony]
         }
     };
 
@@ -215,6 +215,16 @@ getId('entire-container').addEventListener('click', function(targ) {
         console.log(userInput)
     }
 })
+
+var vid = document.getElementsByClassName("show-container");
+
+function playVid() {
+    vid.play();
+}
+
+function pauseVid() {
+    vid.pause();
+}
 
 // Unused Code
 
