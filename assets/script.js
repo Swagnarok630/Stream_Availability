@@ -171,7 +171,7 @@ async function userRequest() {
             displayShows(response)
         })
         .catch(err => console.error(err));
-    }
+}
 
 function displayShows(response) {
     var shows = []
@@ -259,6 +259,16 @@ getId('entire-container').addEventListener('click', function(targ) {
         console.log(userInput)
     }
 })
+
+var vid = document.getElementsByClassName("show-container");
+
+function playVid() {
+    vid.play();
+}
+
+function pauseVid() {
+    vid.pause();
+}
 
 // Unused Code
 
