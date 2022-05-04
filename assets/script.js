@@ -316,28 +316,3 @@ function pauseVid() {
 // }
 
 // Looping keys code
-<<<<<<< HEAD
-//     // Looping through apiKeys
-//     for (var i = 0; i < apiKeys.length; i++) {
-//         // If the API data is good, we json() it.
-//         if (response === 200) {
-//             response.json()
-//             // We break the loop so it doesn't keep looping till apikeys.length
-//             break;
-
-//         // If the current API key is equal to the key we already have, continue aka skip current key
-//         } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"] && response !== 400) {
-//             continue;
-
-//         // If the response comes out invalid
-//         } else if (response !== 200) {
-//             // Set the current iteration key equal to the options API key
-//             options.headers["X-RapidAPI-Key"] = apiKeys[i];
-//             // Fetch with current key
-//             fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
-
-//         } else { 
-//             console.log('KeyLoop is broken fix me')
-//         }
-=======
->>>>>>> 22f32147eb3cd3b04da609e0e29f15cfeac08cf9
