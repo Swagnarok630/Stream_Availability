@@ -219,11 +219,6 @@ function displayShows(response) {
         var overviewContent = document.createTextNode(show.overview)
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
-        
-        //Displaying the trailer of the video at the end of the page
-        .then(response => response.json())
-        
-
     }
 }
 
@@ -262,60 +257,3 @@ getId('entire-container').addEventListener('click', function(targ) {
         console.log(userInput)
     }
 })
-
-var vid = document.getElementsByClassName("show-container");
-
-function playVid() {
-    vid.play();
-}
-
-function pauseVid() {
-    vid.pause();
-}
-
-// Unused Code
-
-// function getGenres() {
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-    //         }
-    //     };
-    
-    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-    //         .then(response => response.json())
-    //         .then((response) => {
-    //             var genresKeys = Object.keys(response)
-    //             var genresValues = Object.values(response)
-    //             var genresProps = response
-    //             var btnGroups = getClass('btn-group');
-    
-    //             // Check tos ee that genres props are returned
-    //             // console.log(genresProps)
-    
-    //             // Check to see that genres keys is returned
-    //             // console.log(genresKeys)
-    
-    //             // Check to see that genres values is returned
-    //             // console.log(genresValues)
-    
-    //             for (var i = 0; i < genresKeys.length; i++) {
-    //                 // Create the input tag, setting attributes
-    //                 var genreInput = document.createElement('input')
-    //                 genreInput.setAttribute('type', 'checkbox')
-    //                 genreInput.setAttribute('id', genresKeys[i])
-    //                 btnGroups[1].appendChild(genreInput)
-    
-    //                 // Create the label tag, setting attributes
-    //                 var genreLabel = document.createElement('label')
-    //                 genreLabel.setAttribute('for', genresKeys[i])
-    //                 genreLabel.textContent = genresValues[i];
-    //                 btnGroups[1].appendChild(genreLabel)
-    //             }
-    //         })
-    //         .catch(err => console.error(err));
-// }
-
-// Looping keys code
