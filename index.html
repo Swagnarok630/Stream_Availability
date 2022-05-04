@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 1 Sketch</title>
+    <title>Picking your Favorite Movies</title>
     
     <link rel="stylesheet" href="./assets/style.css">
 </head>
@@ -118,7 +118,7 @@
             </div>
         </section>
 
-        <section class="series-movie" id="hidden" data-index="4">
+        <section class="series-movie" data-index="4" id="hidden">
             <h1 class="hello">
                 What Series or Movie do you want to see?
             </h1>
@@ -137,15 +137,24 @@
 
         <section class="results" data-index="5" id="hidden">
             <div class="show-container">
-
+                <video id="myVideo" width="320" height="176">
+                    <script src="trailer" type="video/mp4"></script>
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
 
             <div class="show-container">
-
+                <video id="myVideo" width="320" height="176">
+                    <source src="trailer" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
 
             <div class="show-container">
-
+                <video id="myVideo" width="320" height="176">
+                    <script src="trailer" type="video/mp4"></script>
+                    Your browser does not support HTML5 video.
+                </video>
             </div>
         </section>
     </div>

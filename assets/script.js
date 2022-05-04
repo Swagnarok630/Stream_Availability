@@ -23,8 +23,10 @@ var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
-    keysArr: [this.chase, this.tony, this.darryl]
 }
+
+var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl];
+
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
@@ -84,13 +86,42 @@ function grabUserInput() {
     }
 }
 
-// Main API function that grabs API data
-async function userRequest() {
+async function tryAgain(apiKey){
+    console.log("CALLING TRY AGAIN...")
     var options = {
         method: 'GET',
         headers: {
             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-            'X-RapidAPI-Key': apiKeys.darryl
+            'X-RapidAPI-Key': apiKey
+        }
+    };
+
+    var services = userInput.services.join('%2C%20')
+    var genre = userInput.genre.join('%2C%20')
+    var type = userInput.type.join('%2C%20')
+    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en'
+    fetch(apiUrl, options)
+    .then(response => {
+        if(!response.ok){
+            var currentKeyIndex = allKeys.indexOf(apiKey);
+            if (currentKeyIndex !== -1 && allKeys[currentKeyIndex + 1]) {
+                return tryAgain(allKeys[currentKeyIndex + 1])
+            } else {
+                return console.log("YOU RAN OUT OF USABLE API KEYS!!!")
+            }
+        }
+        return response.json()
+    })
+}
+
+// Main API function that grabs API data
+async function userRequest() {
+    var apiKey = allKeys[0];
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+            'X-RapidAPI-Key': apiKey
         }
     };
 
@@ -103,9 +134,21 @@ async function userRequest() {
     // We fetch to randomize the a page number based on total_pages
     fetch(apiUrl, options)
         .then(response => {
-            return response.json()
+            if (response.ok) {
+                console.log("GOT BACK RES ON FIRST CALL")
+                return response.json()
+            }
+
+            var currentKeyIndex = allKeys.indexOf(apiKey);
+
+            if (currentKeyIndex !== -1 && allKeys[currentKeyIndex + 1]) {
+                return tryAgain(allKeys[currentKeyIndex + 1])
+            } else {
+                return console.log("YOU RAN OUT OF USABLE API KEYS!!!")
+            }
         })
         .then(response => {
+            console.log("THIS IS TONY ---- ", response)
             // Using math.floor to randomize page
             randomizedNumber = Math.floor((Math.random() * response.total_pages) + 1)
             return randomizedNumber.toString()
@@ -123,6 +166,7 @@ async function userRequest() {
             return response.json()
         })
         .then(response => {
+            console.log(response)
             // We display the shows passing the response object in
             displayShows(response)
         })
@@ -147,8 +191,6 @@ function displayShows(response) {
     for (var i = 0; i < showContainers.length; i++) {
         // We grab a random show first
         show = shows[i]
-
-        console.log(show.title)
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -177,6 +219,8 @@ function displayShows(response) {
         var overviewContent = document.createTextNode(show.overview)
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
+
+
     }
 }
 
@@ -215,6 +259,16 @@ getId('entire-container').addEventListener('click', function(targ) {
         console.log(userInput)
     }
 })
+
+var vid = document.getElementsByClassName("show-container");
+
+function playVid() {
+    vid.play();
+}
+
+function pauseVid() {
+    vid.pause();
+}
 
 // Unused Code
 
@@ -262,6 +316,7 @@ getId('entire-container').addEventListener('click', function(targ) {
 // }
 
 // Looping keys code
+<<<<<<< HEAD
 //     // Looping through apiKeys
 //     for (var i = 0; i < apiKeys.length; i++) {
 //         // If the API data is good, we json() it.
@@ -284,3 +339,5 @@ getId('entire-container').addEventListener('click', function(targ) {
 //         } else { 
 //             console.log('KeyLoop is broken fix me')
 //         }
+=======
+>>>>>>> 22f32147eb3cd3b04da609e0e29f15cfeac08cf9
