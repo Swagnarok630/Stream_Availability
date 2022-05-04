@@ -23,10 +23,10 @@ var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
+    matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a',
 }
 
-var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl];
-
+var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
@@ -189,8 +189,13 @@ function displayShows(response) {
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
+        if (shows[i] === undefined) {
+            return;
+        }
+
         // We grab a random show first
         show = shows[i]
+        console.log(show)
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -220,13 +225,21 @@ function displayShows(response) {
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
 
-
+        // Video
+        var video = document.createElement('iframe')
+        video.setAttribute('width', '852px')
+        video.setAttribute('height', '480px')
+        video.style.flexShrink = '0';
+        video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
+        var videoContent = document.createTextNode('trailer')
+        video.appendChild(videoContent)
+        showContainers[i].appendChild(video)
     }
 }
 
 getId('entire-container').addEventListener('click', function(targ) {
     // if the target is also has id button
-    if (targ.target && targ.target.matches('#btn')) {
+    if (targ.target && targ.target.matches('.proceed')) {
         // If the index is equal to the total amount of pages we have, we return
         if (index === parseInt(totalIndex())) {
             console.log('Cant go any further! Theres no more sections left!')
@@ -260,6 +273,124 @@ getId('entire-container').addEventListener('click', function(targ) {
     }
 })
 
+// Fucnction to ensure user selects a choice of platform
+function grabServiceInput(platformclick) {
+    // Variable for each radio input
+    var platforms = document.getElementsByName("platform")
+    // Variables for the modal alert and X button to close alert
+    var servicemodal = document.getElementById("service-modal")
+    var servicespan = document.getElementsByClassName("service")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all platforms and check if selected
+    for (var i = 0; i < platforms.length; i++) {   
+        if (platforms[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(platforms[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            platformclick.stopPropagation();
+            // Unhides the modal
+            servicemodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            servicespan.onclick = function() {
+                servicemodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == servicemodal) {
+                    servicemodal.style.display = "none";
+                }
+            }
+        }
+}
+
+// Fucnction to ensure user selects a choice of genre
+function grabGenreInput(genreclick) {
+    // Variable for each radio input
+    var genres = document.getElementsByName("genre")
+    // Variables for the modal alert and X button to close alert
+    var genremodal = document.getElementById("genre-modal")
+    var genrespan = document.getElementsByClassName("genre")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all genres and check if selected
+    for (var i = 0; i < genres.length; i++) {   
+        if (genres[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(genres[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            genreclick.stopPropagation();
+            // Unhides the modal
+            genremodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            genrespan.onclick = function() {
+                genremodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == genremodal) {
+                    genremodal.style.display = "none";
+                }
+            }
+        }
+}
+
+// Fucnction to ensure user selects a choice of movie or show
+function grabTypeInput(typeclick) {
+    // Variable for each radio input
+    var type = document.getElementsByName("type")
+    // Variables for the modal alert and X button to close alert
+    var typemodal = document.getElementById("type-modal")
+    var typespan = document.getElementsByClassName("type")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all types and check if selected
+    for (var i = 0; i < type.length; i++) {   
+        if (type[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(type[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            typeclick.stopPropagation();
+            // Unhides the modal
+            typemodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            typespan.onclick = function() {
+                typemodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == typemodal) {
+                    typemodal.style.display = "none";
+                }
+            }
+        }
+}
+
+// Variable and event listener for button to validate user input at service platforms
+var servicebutton = document.querySelector("#service-btn")
+servicebutton.addEventListener("click", grabServiceInput)
+
+// Variable and event listener for button to validate user input at genres
+var genrebutton = document.querySelector("#genre-btn")
+genrebutton.addEventListener("click", grabGenreInput)
+
+// Variable and event listener for button to validate user input at types
+var typebutton = document.querySelector("#generate-shows")
+typebutton.addEventListener("click", grabTypeInput)
+
+
 var vid = document.getElementsByClassName("show-container");
 
 function playVid() {
@@ -269,50 +400,3 @@ function playVid() {
 function pauseVid() {
     vid.pause();
 }
-
-// Unused Code
-
-// function getGenres() {
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-    //         }
-    //     };
-    
-    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-    //         .then(response => response.json())
-    //         .then((response) => {
-    //             var genresKeys = Object.keys(response)
-    //             var genresValues = Object.values(response)
-    //             var genresProps = response
-    //             var btnGroups = getClass('btn-group');
-    
-    //             // Check tos ee that genres props are returned
-    //             // console.log(genresProps)
-    
-    //             // Check to see that genres keys is returned
-    //             // console.log(genresKeys)
-    
-    //             // Check to see that genres values is returned
-    //             // console.log(genresValues)
-    
-    //             for (var i = 0; i < genresKeys.length; i++) {
-    //                 // Create the input tag, setting attributes
-    //                 var genreInput = document.createElement('input')
-    //                 genreInput.setAttribute('type', 'checkbox')
-    //                 genreInput.setAttribute('id', genresKeys[i])
-    //                 btnGroups[1].appendChild(genreInput)
-    
-    //                 // Create the label tag, setting attributes
-    //                 var genreLabel = document.createElement('label')
-    //                 genreLabel.setAttribute('for', genresKeys[i])
-    //                 genreLabel.textContent = genresValues[i];
-    //                 btnGroups[1].appendChild(genreLabel)
-    //             }
-    //         })
-    //         .catch(err => console.error(err));
-// }
-
-// Looping keys code
