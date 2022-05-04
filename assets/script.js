@@ -220,7 +220,6 @@ function displayShows(response) {
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
 
-
     }
 }
 
@@ -244,7 +243,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         if (index === parseInt(totalIndex())) {
             console.log('Cant go any further! Theres no more sections left!')
             return
-        } else {
+        } else if {
         // We increase the current number index and show the current index
             index++;
             showCurrentNode()
@@ -260,6 +259,18 @@ getId('entire-container').addEventListener('click', function(targ) {
     }
 })
 
+function grabInput() {
+    // If all are false
+    var servicesBtnContainer = queryAll('#services-btn-container :nth-child(odd)');
+
+    console.log(servicesBtnContainer)
+    // for (var i = 0; i < servicesBtnContainer.length; i++) {
+
+    // }
+}
+
+grabInput()
+
 var vid = document.getElementsByClassName("show-container");
 
 function playVid() {
@@ -269,6 +280,7 @@ function playVid() {
 function pauseVid() {
     vid.pause();
 }
+
 
 // Unused Code
 
