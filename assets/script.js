@@ -23,9 +23,10 @@ var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
+    matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a'
 }
 
-var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl];
+var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
 
 
 // Replace 'element here' with the html parents that have/will have class hidden
@@ -189,8 +190,13 @@ function displayShows(response) {
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
+        if (shows[i] === undefined) {
+            return;
+        }
+
         // We grab a random show first
         show = shows[i]
+        console.log(show)
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -220,6 +226,14 @@ function displayShows(response) {
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
 
+        var video = document.createElement('iframe')
+        video.setAttribute('width', '852px')
+        video.setAttribute('height', '480px')
+        video.style.flexShrink = '0';
+        video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
+        var videoContent = document.createTextNode('trailer')
+        video.appendChild(videoContent)
+        showContainers[i].appendChild(video)
     }
 }
 
@@ -243,7 +257,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         if (index === parseInt(totalIndex())) {
             console.log('Cant go any further! Theres no more sections left!')
             return
-        } else if {
+        } else {
         // We increase the current number index and show the current index
             index++;
             showCurrentNode()
