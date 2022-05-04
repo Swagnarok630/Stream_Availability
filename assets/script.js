@@ -10,28 +10,21 @@ var getClass = element => document.getElementsByClassName(element)
 // Global Variables
 var index = 1;
 var randomizedPageNumber = [];
+var showsDataHolder = [];
 
 userInput = {
-    services: ['netflix'],
-    genre: ['5'],
-    type: ['movie'],
+    services: [],
+    genre: [],
+    type: [],
 }
 
-// API KEYS AND API AUTH
+// API KEYS
 var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
     keysArr: [this.chase, this.tony, this.darryl]
 }
-
-var options = {
-    method: 'GET',
-    headers: {
-        'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-        'X-RapidAPI-Key': apiKeys.tony
-    }
-};
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
@@ -42,7 +35,7 @@ function totalIndex() {
 }
 
 // Loops over all nodes and returns the node that the user is currently on
-function currentIndex() {
+function currentNode() {
     for (var i = 0; i < forListeners.length; i++) {
         // If the current node data-question value in the for loop matches index value
         if (forListeners[i].dataset.index === index.toString()) {
@@ -52,43 +45,139 @@ function currentIndex() {
 };
 
 // Function that hides all other noncurrent nodes and shows current node
-function showCurrent() {
+function showCurrentNode() {
     // Loops over all nodes and adds class hidden
     for (var i = 0; i < forListeners.length; i++) {
         forListeners[i].setAttribute("id", "hidden");
     };
     // Remove class hidden from current index
-    currentIndex().removeAttribute("id");
+    currentNode().removeAttribute("id");
 };
 
-// Main API function that grabs API data and manipulates it
-function userRequest() {
+function grabUserInput() {
+    inputs = queryAll('input')
+
+    // Looping through all input nodes
+    for (var i = 0; i < inputs.length; i++) {
+        // If the current has tag input and is checked
+        if (inputs[i].checked) {
+            // Check to see if inputs are checked.
+            console.log('I was checked ' + inputs[i].id)
+
+            // Now we store the user data in userInput
+            // For services
+            if (inputs[i].parentNode.matches('#services-btn-container')) {
+                userInput.services.push(inputs[i].id)
+            }
+            // For genres
+            if (inputs[i].parentNode.matches('#genres-btn-container')) {
+                userInput.genre.push(inputs[i].id)
+            }
+            // For type
+            if (inputs[i].parentNode.matches('#type-btn-container')) {
+                userInput.type.push(inputs[i].id)
+            }
+
+            // Check to see if userInput has values pushed
+            // console.log(userInput)
+        }
+    }
+}
+
+// Main API function that grabs API data
+async function userRequest() {
+    var options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
+            'X-RapidAPI-Key': apiKeys.darryl
+        }
+    };
+
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
-    
     var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en'
 
     // console.log(randomizedPageNumber)
+    // We fetch to randomize the a page number based on total_pages
     fetch(apiUrl, options)
         .then(response => {
             return response.json()
         })
         .then(response => {
-            // We randomize the page based on how many pages there are on total_pages
-            randomizedPageNumber.push(Math.floor((Math.random() * response.total_pages) + 1))
-            // We return the data object for a second time to manipulate the data on the next .then
-            return response
+            // Using math.floor to randomize page
+            randomizedNumber = Math.floor((Math.random() * response.total_pages) + 1)
+            return randomizedNumber.toString()
+        })
+        
+    // We catch the returned promise and use it to dynamically change the URL
+    .then(randomizedNumber => {
+        // Console log the page number
+        console.log('The user is on page: ' + randomizedNumber)
+
+        return fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&page=' + randomizedNumber + '&output_language=en&language=en', options)
+    })
+        .then(response => {
+            // We json the response
+            return response.json()
         })
         .then(response => {
-            // Check to see if the data we're going to use is valid
-            // console.log(response)
-            // console.log(randomizedPageNumber)
-
-            // Statements with what to do with data pulled by the user
-            // Statement 1
+            // We display the shows passing the response object in
+            displayShows(response)
         })
         .catch(err => console.error(err));
+}
+
+function displayShows(response) {
+    var shows = []
+    // Looping through the response object 3 times to grab 3 shows
+    for (var i = 0; i < response.results.length; i++) {
+        // We loop through response.results and assign it a variable
+        var show = response.results[i]
+        // We push that show into shows array
+        shows.push(show)
+    }
+    // Check to see that shows has all results
+    // console.log(shows)
+
+    var showContainers = queryAll('.show-container')
+
+    // Now we loop through containers and shows
+    for (var i = 0; i < showContainers.length; i++) {
+        // We grab a random show first
+        show = shows[i]
+
+        console.log(show.title)
+
+        // Creating title tag, setting its id, and appending it to the page
+        var title = document.createElement('h1')
+        title.setAttribute('id', 'title')
+        var titleContent = document.createTextNode(show.title)
+        title.appendChild(titleContent)
+        showContainers[i].appendChild(title)
+
+        // We do the same for the year, cast, and overview
+        var year = document.createElement('h2')
+        year.setAttribute('id', 'title')
+        var yearContent = document.createTextNode(show.year)
+        year.appendChild(yearContent)
+        showContainers[i].appendChild(year)
+
+        // Cast
+        var cast = document.createElement('h3')
+        cast.setAttribute('id', 'title')
+        var castContent = document.createTextNode(show.cast.join(', '))
+        cast.appendChild(castContent)
+        showContainers[i].appendChild(cast)
+
+        // Overview
+        var overview = document.createElement('p')
+        overview.setAttribute('id', 'overview')
+        var overviewContent = document.createTextNode(show.overview)
+        overview.appendChild(overviewContent)
+        showContainers[i].appendChild(overview)
+    }
 }
 
 getId('entire-container').addEventListener('click', function(targ) {
@@ -101,12 +190,31 @@ getId('entire-container').addEventListener('click', function(targ) {
         } else {
         // We increase the current number index and show the current index
             index++;
-            showCurrent()
+            showCurrentNode()
         }
     }
-})
 
-// userRequest()
+    // If the target also has the Id generate-shows
+    if (targ.target && targ.target.matches('#generate-shows')) {
+        // If the index is equal to the total amount of pages we have, we return
+        if (index === parseInt(totalIndex())) {
+            console.log('Cant go any further! Theres no more sections left!')
+            return
+        } else {
+        // We increase the current number index and show the current index
+            index++;
+            showCurrentNode()
+        }
+
+        // We grab user input
+        grabUserInput()
+
+        // We do an API request for data.
+        userRequest()
+
+        console.log(userInput)
+    }
+})
 
 // Unused Code
 
@@ -154,25 +262,25 @@ getId('entire-container').addEventListener('click', function(targ) {
 // }
 
 // Looping keys code
-    // // Looping through apiKeys
-    // for (var i = 0; i < apiKeys.length; i++) {
-    //     // If the API data is good, we json() it.
-    //     if (response === 400) {
-    //         response.json()
-    //         // We break the loop so it doesn't keep looping till apikeys.length
-    //         break;
+//     // Looping through apiKeys
+//     for (var i = 0; i < apiKeys.length; i++) {
+//         // If the API data is good, we json() it.
+//         if (response === 200) {
+//             response.json()
+//             // We break the loop so it doesn't keep looping till apikeys.length
+//             break;
 
-    //     // If the current API key is equal to the key we already have, continue aka skip current key
-    //     } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"] && response !== 400) {
-    //         continue;
+//         // If the current API key is equal to the key we already have, continue aka skip current key
+//         } else if (apiKeys[i] === options.headers["X-RapidAPI-Key"] && response !== 400) {
+//             continue;
 
-    //     // If the response comes out invalid
-    //     } else if (response !== 400) {
-    //         // Set the current iteration key equal to the options API key
-    //         options.headers["X-RapidAPI-Key"] = apiKeys[i];
-    //         // Fetch with current key
-    //         fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
+//         // If the response comes out invalid
+//         } else if (response !== 200) {
+//             // Set the current iteration key equal to the options API key
+//             options.headers["X-RapidAPI-Key"] = apiKeys[i];
+//             // Fetch with current key
+//             fetch('https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en', options)
 
-    //     } else {
-    //         console.log('KeyLoop is broken fix me')
-    //     }
+//         } else { 
+//             console.log('KeyLoop is broken fix me')
+//         }
