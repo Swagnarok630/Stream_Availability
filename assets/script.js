@@ -23,10 +23,10 @@ var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
+    matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a',
 }
 
-var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl];
-
+var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
@@ -219,7 +219,10 @@ function displayShows(response) {
         var overviewContent = document.createTextNode(show.overview)
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
-
+        
+        //Displaying the trailer of the video at the end of the page
+        .then(response => response.json())
+        
 
     }
 }
