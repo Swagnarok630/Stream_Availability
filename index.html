@@ -16,7 +16,7 @@
             </h1>
 
             <div class="arrow-icon-container">
-                <i class="gg-push-chevron-right-o" id="btn"></i>
+                <i class="gg-push-chevron-right-o proceed" id="btn"></i>
             </div>
 
             <h2>
@@ -25,6 +25,14 @@
         </section>
 
         <section class="streaming-service" id="hidden" data-index="2">
+            <!-- Modal alert for service platforms -->
+            <div class="modal" id="service-modal">
+                <div class="modal-content">
+                    <span class="service close">&times;</span>
+                    <p>Please select a streaming service before continuing</p>
+                </div>
+            </div>
+
             <h1 class="hello">
                 What streaming service do you prefer?
             </h1>
@@ -45,11 +53,19 @@
             </div>
 
             <div class="arrow-icon-container">
-                <i class="gg-push-chevron-right-o" id="btn"></i>
+                <i class="gg-push-chevron-right-o proceed" id="service-btn"></i>
             </div>
         </section>
 
         <section class="genres" id="hidden" data-index="3">
+            <!-- Modal alert for genres -->
+            <div class="modal" id="genre-modal">
+                <div class="modal-content">
+                    <span class="genre close">&times;</span>
+                    <p>Please select a genre before continuing</p>
+                </div>
+            </div>
+
             <h1 class="hello">
                 What genre do want to watch?
             </h1>
@@ -114,13 +130,21 @@
             </div>
 
             <div class="arrow-icon-container">
-                <i class="gg-push-chevron-right-o" id="btn"></i>
+                <i class="gg-push-chevron-right-o proceed" id="genre-btn"></i>
             </div>
         </section>
 
         <section class="series-movie" data-index="4" id="hidden">
+            <!-- Modal alert for type -->
+            <div class="modal" id="type-modal">
+                <div class="modal-content">
+                    <span class="type close">&times;</span>
+                    <p>Please select a type before continuing</p>
+                </div>
+            </div>
+
             <h1 class="hello">
-                What Series or Movie do you want to see?
+                Would you like to see a Movie or Series?
             </h1>
 
             <div class="btn-group" id="type-btn-container" role="group" aria-label="Basic outlined example">
@@ -138,21 +162,21 @@
         <section class="results" data-index="5" id="hidden">
             <div class="show-container">
                 <video id="myVideo" width="320" height="176">
-                    <script src="trailer" type="video/mp4"></script>
+                    <script src="#" type="video/mp4"></script>
                     Your browser does not support HTML5 video.
                 </video>
             </div>
 
             <div class="show-container">
                 <video id="myVideo" width="320" height="176">
-                    <source src="trailer" type="video/mp4">
+                    <source src="#" type="video/mp4">
                     Your browser does not support HTML5 video.
                 </video>
             </div>
 
             <div class="show-container">
                 <video id="myVideo" width="320" height="176">
-                    <script src="trailer" type="video/mp4"></script>
+                    <script src="#" type="video/mp4"></script>
                     Your browser does not support HTML5 video.
                 </video>
             </div>
