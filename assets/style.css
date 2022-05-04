@@ -4,11 +4,7 @@
 }
 
 section {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    position: relative;
 }
 
 #hidden {
@@ -31,8 +27,8 @@ h2 {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: #222F73;
-    color: #77BDA8;
+    background-color: #F2F2F2;
+    color: #8985F2;
 }
 
 .landing-page h1 {
@@ -95,9 +91,13 @@ h2 {
 } 
 
 .gg-push-chevron-right-o {
-    color: #77BDA8;
-    background-color: #222F73;
+    color: #F2A649;
     --ggs: 6.5;
+}
+
+.gg-push-chevron-right-o:hover {
+    color: #f78a06;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .arrow-icon-container {
@@ -109,9 +109,11 @@ h2 {
     margin-left: 45vw;
 }
 
+/* Streaming service page styling */
 .streaming-service {
-    background-color: #503659;
-    color: #DEA6A6;
+    display: none;
+    background-color: #F2F2F2;
+    color: #8985F2;
 }
 
 .streaming-service .btn-group {
@@ -124,9 +126,9 @@ h2 {
 
 .streaming-service .btn-group label {
     display: inline-block;
-    background-color: #DEA6A6;
-    border: solid 2px #9a3030;
-    color: black;
+    background-color: #CAC9F2;
+    border: solid 2px #716DF2;
+    color: #716DF2;
     font-size: 30px;
     font-style: Sans-serif;
     padding: 15px;
@@ -137,6 +139,16 @@ h2 {
     opacity: 0;
     width: 0;
     height: 0;
+} 
+
+.streaming-service .btn-group label:hover {
+    background-color: #716DF2;
+    color:#CAC9F2 
+} 
+
+.streaming-service .btn-group input[type="radio"]:checked+label{
+    background-color: #716DF2;
+    color: #CAC9F2;
 }
 
 #video-stream {
@@ -146,62 +158,93 @@ h2 {
     height: 583px;
 }
 
-/* styling for sections */
-
+/* genres page styling */
 .genres {
-    /* display: none; */
+    display: none;
     padding: 2em;
     border: 2px solid red;
-    background-color: #222F73;
-    color: #fcf6c9;
+    background-color: #F2F2F2;
+    color: #8985F2;
 }
 
 .genres .btn-group {
-    max-width: 80vw;
+    max-width: 100vw;
     border: 2px solid red;
     padding: 2em;
-    height: 45vh;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
+    flex-wrap:wrap;
 }
 
 .genres .btn-group label {
     margin: 1em;
-    height: 50px;
-    width: 100px;
-    background-color: #fcf6c9;
-    font-size: x-large;
+    height: 30px;
+    width: 120px;
+    background-color: #CAC9F2;
+    color:#716DF2;
+    font-size: 16px;
+    font-style: Sans-serif;
+    border-radius: 25px;
+    border: solid 2px #716DF2;
+    justify-content: space-evenly;
+    text-align: center;
 }
 
+.genres .btn-group label:hover {
+    background-color: #716DF2;
+    color: #CAC9F2;
+}
+
+.genres .btn-group input[type="radio"]:checked+label{
+    background-color: #716DF2;
+    color: #CAC9F2;
+}
+
+/* series or movie page styling */
 .series-movie {
-    /* display: none; */
-    background-color: #77BDA8;
-    color: #222F73;
+    display: none;
+    background-color: #F2F2F2;
+    color: #8985F2;
+}
+
+.series-movie .hello {
+    font-size: 100px;
 }
 
 .series-movie .btn-group {
-    height: 45vh;
+    border: solid 2px red;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 }
 
-.series-movie .btn-group button {
+.series-movie .btn-group label {
+    padding: 2%;
+    border: solid 2px red;
     border-radius: 25px;
-    height: 250px;
-    width: 250px;
-    background-color: #222F73;
-    font-size: 32px;
-    color: rgb(74, 233, 74)
+    height: 60px;
+    width: 200px;
+    background-color:#CAC9F2;
+    color: #716DF2;
+    font-size: 40px; 
+    text-align: center;
 }
 
+.series-movie .btn-group label:hover {
+    background-color: #716DF2;
+    color: #CAC9F2;
+}
+
+.series-movie .btn-group input[type="radio"]:checked+label{
+    background-color: #716DF2;
+    color: #CAC9F2;
+}
+
+/* results page styling */
 .results {
-    background-color: #503659;
-    color:#77BDA8;
+    background-color: #CAC9F2;
+    color:#8985F2;
     padding: 2em;
     display: flex;
     flex-direction: row;
@@ -212,7 +255,7 @@ h2 {
     border: 2px solid red;
     margin: 2em;
     padding: 2em;
-    width: 27vw;
+    width: 30vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
