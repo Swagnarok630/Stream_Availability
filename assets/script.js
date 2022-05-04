@@ -23,11 +23,10 @@ var apiKeys = {
     chase: '0ec05b3931msh88228e405c88947p14f250jsn5fa8105f9f8a',
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
-    matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a'
+    matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a',
 }
 
 var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
-
 
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
@@ -172,7 +171,7 @@ async function userRequest() {
             displayShows(response)
         })
         .catch(err => console.error(err));
-    }
+}
 
 function displayShows(response) {
     var shows = []
@@ -285,49 +284,12 @@ function grabInput() {
 
 grabInput()
 
-// Unused Code
+var vid = document.getElementsByClassName("show-container");
 
-// function getGenres() {
-    //     const options = {
-    //         method: 'GET',
-    //         headers: {
-    //             'X-RapidAPI-Host': 'streaming-availability.p.rapidapi.com',
-    //             'X-RapidAPI-Key': '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583'
-    //         }
-    //     };
-    
-    //     fetch('https://streaming-availability.p.rapidapi.com/genres', options)
-    //         .then(response => response.json())
-    //         .then((response) => {
-    //             var genresKeys = Object.keys(response)
-    //             var genresValues = Object.values(response)
-    //             var genresProps = response
-    //             var btnGroups = getClass('btn-group');
-    
-    //             // Check tos ee that genres props are returned
-    //             // console.log(genresProps)
-    
-    //             // Check to see that genres keys is returned
-    //             // console.log(genresKeys)
-    
-    //             // Check to see that genres values is returned
-    //             // console.log(genresValues)
-    
-    //             for (var i = 0; i < genresKeys.length; i++) {
-    //                 // Create the input tag, setting attributes
-    //                 var genreInput = document.createElement('input')
-    //                 genreInput.setAttribute('type', 'checkbox')
-    //                 genreInput.setAttribute('id', genresKeys[i])
-    //                 btnGroups[1].appendChild(genreInput)
-    
-    //                 // Create the label tag, setting attributes
-    //                 var genreLabel = document.createElement('label')
-    //                 genreLabel.setAttribute('for', genresKeys[i])
-    //                 genreLabel.textContent = genresValues[i];
-    //                 btnGroups[1].appendChild(genreLabel)
-    //             }
-    //         })
-    //         .catch(err => console.error(err));
-// }
+function playVid() {
+    vid.play();
+}
 
-// Looping keys code
+function pauseVid() {
+    vid.pause();
+}
