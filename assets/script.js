@@ -283,13 +283,3 @@ function grabInput() {
 }
 
 grabInput()
-
-var vid = document.getElementsByClassName("show-container");
-
-function playVid() {
-    vid.play();
-}
-
-function pauseVid() {
-    vid.pause();
-}
