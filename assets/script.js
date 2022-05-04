@@ -225,6 +225,7 @@ function displayShows(response) {
         overview.appendChild(overviewContent)
         showContainers[i].appendChild(overview)
 
+        // Video
         var video = document.createElement('iframe')
         video.setAttribute('width', '852px')
         video.setAttribute('height', '480px')
@@ -238,7 +239,7 @@ function displayShows(response) {
 
 getId('entire-container').addEventListener('click', function(targ) {
     // if the target is also has id button
-    if (targ.target && targ.target.matches('#btn')) {
+    if (targ.target && targ.target.matches('.proceed')) {
         // If the index is equal to the total amount of pages we have, we return
         if (index === parseInt(totalIndex())) {
             console.log('Cant go any further! Theres no more sections left!')
@@ -272,14 +273,130 @@ getId('entire-container').addEventListener('click', function(targ) {
     }
 })
 
-function grabInput() {
-    // If all are false
-    var servicesBtnContainer = queryAll('#services-btn-container :nth-child(odd)');
-
-    console.log(servicesBtnContainer)
-    // for (var i = 0; i < servicesBtnContainer.length; i++) {
-
-    // }
+// Fucnction to ensure user selects a choice of platform
+function grabServiceInput(platformclick) {
+    // Variable for each radio input
+    var platforms = document.getElementsByName("platform")
+    // Variables for the modal alert and X button to close alert
+    var servicemodal = document.getElementById("service-modal")
+    var servicespan = document.getElementsByClassName("service")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all platforms and check if selected
+    for (var i = 0; i < platforms.length; i++) {   
+        if (platforms[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(platforms[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            platformclick.stopPropagation();
+            // Unhides the modal
+            servicemodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            servicespan.onclick = function() {
+                servicemodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == servicemodal) {
+                    servicemodal.style.display = "none";
+                }
+            }
+        }
 }
 
-grabInput()
+// Fucnction to ensure user selects a choice of genre
+function grabGenreInput(genreclick) {
+    // Variable for each radio input
+    var genres = document.getElementsByName("genre")
+    // Variables for the modal alert and X button to close alert
+    var genremodal = document.getElementById("genre-modal")
+    var genrespan = document.getElementsByClassName("genre")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all genres and check if selected
+    for (var i = 0; i < genres.length; i++) {   
+        if (genres[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(genres[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            genreclick.stopPropagation();
+            // Unhides the modal
+            genremodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            genrespan.onclick = function() {
+                genremodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == genremodal) {
+                    genremodal.style.display = "none";
+                }
+            }
+        }
+}
+
+// Fucnction to ensure user selects a choice of movie or show
+function grabTypeInput(typeclick) {
+    // Variable for each radio input
+    var type = document.getElementsByName("type")
+    // Variables for the modal alert and X button to close alert
+    var typemodal = document.getElementById("type-modal")
+    var typespan = document.getElementsByClassName("type")[0];
+    // Created an empty array, so that if no option is picked it remains empty
+    var checker = [];
+    // Loop to iterate through all types and check if selected
+    for (var i = 0; i < type.length; i++) {   
+        if (type[i].checked) {
+            // If an option is selected, it will push to array and continue to next page
+            checker.push(type[i].value);
+            // console.log(checker[0])
+        }}
+    // If the array remmains empty, modal alert will trigger
+    if (checker.length === 0) {
+            // stopPropagation used to prevent moving to the next screen and remain on current screen
+            typeclick.stopPropagation();
+            // Unhides the modal
+            typemodal.style.display = "block";
+            // Allows user to click on X button to close modal
+            typespan.onclick = function() {
+                typemodal.style.display = "none";
+            }
+            // Allows user to click anywhere outside the modal window to close modal
+            window.onclick = function(event) {
+                if (event.target == typemodal) {
+                    typemodal.style.display = "none";
+                }
+            }
+        }
+}
+
+// Variable and event listener for button to validate user input at service platforms
+var servicebutton = document.querySelector("#service-btn")
+servicebutton.addEventListener("click", grabServiceInput)
+
+// Variable and event listener for button to validate user input at genres
+var genrebutton = document.querySelector("#genre-btn")
+genrebutton.addEventListener("click", grabGenreInput)
+
+// Variable and event listener for button to validate user input at types
+var typebutton = document.querySelector("#generate-shows")
+typebutton.addEventListener("click", grabTypeInput)
+
+
+var vid = document.getElementsByClassName("show-container");
+
+function playVid() {
+    vid.play();
+}
+
+function pauseVid() {
+    vid.pause();
+}
