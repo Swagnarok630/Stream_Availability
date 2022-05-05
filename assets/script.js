@@ -99,7 +99,11 @@ async function tryAgain(apiKey){
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
-    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en'
+    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en';
+
+    // check to see if the request is valid
+    // console.log(apiUrl)
+
     fetch(apiUrl, options)
     .then(response => {
         if(!response.ok){
@@ -234,15 +238,6 @@ function displayShows(response) {
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
-
-        // Background Trailer Image
-        var image = document.createElement('image')
-        image.setAttribute('width', '100%')
-        image.setAttribute('height', '100%')
-        image.setAttribute('src', 'https://wallpapercave.com/wp/p4iaEa4.jpg' + show.posterURLs)
-        var imageContent = document.createTextNode('background')
-        image.appendChild(imageContent)
-        showContainers[i].appendChild(image)
     }
 }
 
@@ -258,6 +253,11 @@ getId('entire-container').addEventListener('click', function(targ) {
             index++;
             showCurrentNode()
         }
+    }
+
+    if (targ.target && targ.target.matches('.back')) {
+        index--;
+        showCurrentNode();
     }
 
     // If the target also has the Id generate-shows
@@ -278,7 +278,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         // We do an API request for data.
         userRequest()
 
-        console.log(userInput)
+        // console.log('This is the user input: ' + userInput)
     }
 })
 
