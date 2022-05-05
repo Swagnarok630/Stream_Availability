@@ -35,27 +35,18 @@ h2 {
 
 .landing-page h1 {
     text-align: center;
-    padding-bottom: 0px;
-}
-
-.hello {
-    margin-right: .5em;
+    padding-bottom: 0;
 }
 
 .landing-page h2 {
+    padding-top: 0;
     text-align: center;
 }
 
-.username-container {
+.index-btn-container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-}
-
-#username {
-    padding-top: 0px;
-    min-width: 15vw;
-    margin-right: .25em;
 }
 
 /*Arrow icon button*/
@@ -94,7 +85,20 @@ h2 {
 
 .gg-push-chevron-right-o {
     color: #F2A649;
-    --ggs: 6.5;
+}
+
+.back {
+    transform: scale(6) scaleX(-1);
+    margin-right: 1em;
+}
+
+.proceed {
+    transform: scale(6);
+    margin-left: 1em;
+}
+
+.generate {
+    transform: scale(6);
 }
 
 .gg-push-chevron-right-o:hover {
@@ -108,7 +112,6 @@ h2 {
     justify-content: center;
     height: 150px;
     width: 150px;
-    margin-left: 45vw;
 }
 
 /* Streaming service page styling */
