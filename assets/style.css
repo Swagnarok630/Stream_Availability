@@ -113,7 +113,7 @@ h2 {
 
 /* Streaming service page styling */
 .streaming-service {
-    display: none;
+    /* display: none; */
     background-color: #F2F2F2;
     color: #8985F2;
 }
@@ -162,7 +162,7 @@ h2 {
 
 /* genres page styling */
 .genres {
-    display: none;
+    /* display: none; */
     padding: 2em;
     border: 2px solid red;
     background-color: #F2F2F2;
@@ -204,7 +204,7 @@ h2 {
 
 /* series or movie page styling */
 .series-movie {
-    display: none;
+    /* display: none; */
     background-color: #F2F2F2;
     color: #8985F2;
 }
