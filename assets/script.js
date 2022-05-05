@@ -267,7 +267,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         grabUserInput()
 
         // We do an API request for data.
-        userRequest()
+        // userRequest() commented out to prevent API requests for the time being
 
         console.log(userInput)
     }
