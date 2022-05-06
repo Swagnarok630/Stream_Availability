@@ -206,13 +206,19 @@ function displayShows(response) {
         getClass().removeAttribute('id')
     }
 
+    // Holds the 3 shows objects that are already appended onto the page
+    var showHolder = []
+
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
         // We grab a random show
         show = shows[Math.floor((Math.random() * shows.length) + 0)]
 
-        // If the current show index is already in the shows array, we return
-        if (containsShow(show[i], shows)) {
+        // We push that show into the showHolder array
+        showHolder.push(show)
+
+        // If the current show index is already in the showHolder array, we return so we don't get duplicate shows
+        if (containsShow(show[i], showHolder)) {
             return;
         }
 
@@ -317,7 +323,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         // We go from the loading page to results page
         setTimeout(() => {
             loadingPage()
-        }, 2500);
+        }, 4000);
     }
 })
 
