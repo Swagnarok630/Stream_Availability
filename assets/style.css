@@ -474,12 +474,14 @@ h2 {
 
 /* results page styling */
 .results {
+    height: fit-content;
     background-color: #CAC9F2;
     color:#8985F2;
     padding: 2em;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
 }
 
@@ -487,27 +489,63 @@ h2 {
     border: 2px solid;
     margin: 2em;
     padding: 2em;
-    width: 30vw;
+    width: fit-content;
     display: flex;
-    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-#title {
-    border: 2px solid red;
+#show-information-container {
+    display: flex;
+    flex-direction: column;
+    padding: .5em;
+    width: 450px;
+}
+
+#picture-container {
+    width: 300px;
+    height: 360px;
+    background-color: #000;
+    border-radius: 1em;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
 }
 
 #cast {
-    border: 2px solid red;
-}
-
-#year {
-    border: 2px solid red;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 #overview {
-    border: 2px solid red;
+    padding-left: 2.3em;
+    padding-top: 1em;
+    padding-right: 2.3em;
+    font-size: 1rem;
+}
+
+.title-year-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+#title {
+    padding: .5em;
+    font-size: 2rem;
+}
+
+#year {
+    text-align: center;
+    font-size: 1rem;
+    margin: auto;
+    padding: 0;
+    padding-right: .25em;
+}
+
+#results-video {
+    flex-shrink: 0;
+    margin-left: .5em;
 }
 
 /* The Modal (background) */
