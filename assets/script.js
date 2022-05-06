@@ -179,7 +179,7 @@ async function userRequest() {
 
 function displayShows(response) {
     var shows = []
-    // Looping through the response object 3 times to grab 3 shows
+    // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
     for (var i = 0; i < response.results.length; i++) {
         // We loop through response.results and assign it a variable
         var show = response.results[i]
@@ -193,13 +193,14 @@ function displayShows(response) {
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
-        if (shows[i] === undefined) {
+        // We grab a random show
+        show = shows[Math.floor((Math.random() * shows.length) + 0)]
+        if (show === undefined || show === null) {
             return;
         }
 
-        // We grab a random show first
-        show = shows[i]
-        console.log(show)
+        //Check to see current index show
+        // console.log(show)
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -278,9 +279,19 @@ getId('entire-container').addEventListener('click', function(targ) {
         // We do an API request for data.
         userRequest()
 
-        // console.log('This is the user input: ' + userInput)
+        // We go from the loading page to results page
+        setTimeout(() => {
+            loadingPage()
+        }, 1700);
     }
 })
+
+function loadingPage() {
+    if (currentNode().dataset.index == (parseInt(totalIndex()) - 1)) {
+        index++;
+        showCurrentNode();
+    }
+}
 
 // Fucnction to ensure user selects a choice of platform
 function grabServiceInput(platformclick) {
