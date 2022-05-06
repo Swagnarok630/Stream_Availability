@@ -246,6 +246,15 @@ function displayShows(response) {
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
+
+        // Background Trailer Image
+        var image = document.createElement('image')
+        image.setAttribute('width', '100%')
+        image.setAttribute('height', '100%')
+        image.setAttribute('src', 'https://wallpapercave.com/wp/p4iaEa4.jpg' + show.posterURLs)
+        var imageContent = document.createTextNode('background')
+        image.appendChild(imageContent)
+        showContainers[i].appendChild(image)
     }
 }
 
@@ -284,7 +293,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         grabUserInput()
 
         // We do an API request for data.
-        userRequest()
+        // userRequest() commented out to prevent API requests for the time being
 
         // We go from the loading page to results page
         setTimeout(() => {

@@ -15,8 +15,7 @@ section {
 
 h1 {
     font-weight: bolder;
-    font-size: 7rem;
-    padding: .5em;
+    font-size: 5rem;
 }
 
 h2 {
@@ -117,12 +116,13 @@ h2 {
 /* Streaming service page styling */
 .streaming-service {
     /* display: none; */
+    padding: 2em;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .streaming-service .btn-group {
-    height: 45vh;
+    height: 25vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -181,13 +181,13 @@ h2 {
     flex-wrap:wrap;
 }
 
-.genres .btn-group label {
+.genres .btn-group .display {
     margin: 1em;
     height: 30px;
     width: 120px;
     background-color: #CAC9F2;
     color:#716DF2;
-    font-size: 16px;
+    font-size: 17px;
     font-style: Sans-serif;
     border-radius: 25px;
     border: solid 2px #716DF2;
@@ -195,38 +195,41 @@ h2 {
     text-align: center;
 }
 
-.genres .btn-group label:hover {
+.genres .btn-group .display:hover {
     background-color: #716DF2;
     color: #CAC9F2;
 }
 
-.genres .btn-group input[type="radio"]:checked+label{
+.genres .btn-group input[type="radio"]:checked+.display{
     background-color: #716DF2;
     color: #CAC9F2;
+}
+
+.genres .btn-group input {
+    display:none;
 }
 
 /* series or movie page styling */
 .series-movie {
     /* display: none; */
+    padding: 2em;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
-.series-movie .hello {
-    font-size: 100px;
-}
-
 .series-movie .btn-group {
+    height: 25vh;
+    width: 102vw;
     border: solid 2px transparent;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 }
 
 .series-movie .btn-group label {
     padding: 2%;
-    border: solid 2px red;
+    border: solid 2px #716DF2;
     border-radius: 25px;
     height: 60px;
     width: 200px;
@@ -244,6 +247,10 @@ h2 {
 .series-movie .btn-group input[type="radio"]:checked+label{
     background-color: #716DF2;
     color: #CAC9F2;
+}
+
+.series-movie .btn-group input {
+    display: none;
 }
 
 /* results page styling */
