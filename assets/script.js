@@ -177,6 +177,8 @@ async function userRequest() {
         .catch(err => console.error(err));
 }
 
+var newArray = []
+
 function displayShows(response) {
     var shows = []
     // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
@@ -188,6 +190,11 @@ function displayShows(response) {
     }
     // Check to see that shows has all results
     // console.log(shows)
+
+    // If there are no shows to display we show the no shows page
+    if (shows.length === 0) {
+        currentNode().setAttribute('id', 'hidden')
+    }
 
     var showContainers = queryAll('.show-container')
 
