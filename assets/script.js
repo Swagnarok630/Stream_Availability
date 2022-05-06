@@ -252,15 +252,19 @@ function displayShows(response) {
         showContainers[i].appendChild(video)
       
         // Background Trailer Image
-        console.log(show)
-        var image = document.createElement('image')
-        image.setAttribute('width', '100%')
-        image.setAttribute('height', '100%')
-        image.setAttribute('src', 'https://wallpapercave.com/wp/p4iaEa4.jpg' + show.posterURLs)
-        var imageContent = document.createTextNode('background')
-        image.appendChild(imageContent)
-        showContainers[i].appendChild(image)
-        console.log()
+        // console.log(show)
+        // var image = document.createElement('image')
+        // image.setAttribute('width', '100%')
+        // image.setAttribute('height', '100%')
+        // image.setAttribute('src', show.posterURLs['780'])
+        // var imageContent = document.createTextNode('background')
+        // image.appendChild(imageContent)
+        // showContainers[i].appendChild(image)
+
+        // console.log(show.posterURLs['780'])
+        // console.log("url(" + show.posterURLs['780'] + ")")
+        // showContainers[i].setAttribute('style', "backgroundImage: url('" + show.posterURLs['780'] + "')")
+        
     }
 }
 
