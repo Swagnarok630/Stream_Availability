@@ -31,9 +31,13 @@ var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
 
+// Check to see that forListeners is a nodeList
+// console.log(forListeners)
+
 // Function that returns how many indexs there are. Could be useful if we end up adding more sections
+// Logic for sections with no dataset index todo
 function totalIndex() {
-    return (forListeners[forListeners.length - 1]).dataset.index
+    return (forListeners[forListeners.length - 3]).dataset.index
 }
 
 // Loops over all nodes and returns the node that the user is currently on
@@ -172,6 +176,7 @@ async function userRequest() {
         .then(response => {
             console.log(response)
             // We display the shows passing the response object in
+            // Loading page code here
             displayShows(response)
         })
         .catch(err => console.error(err));
@@ -188,6 +193,12 @@ function displayShows(response) {
     }
     // Check to see that shows has all results
     // console.log(shows)
+
+    // If there are no shows to display we show the no shows page
+    if (shows.length === 0) {
+        currentNode().setAttribute('id', 'hidden')
+
+    }
 
     var showContainers = queryAll('.show-container')
 
@@ -239,15 +250,6 @@ function displayShows(response) {
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
-
-        // Background Trailer Image
-        var image = document.createElement('image')
-        image.setAttribute('width', '100%')
-        image.setAttribute('height', '100%')
-        image.setAttribute('src', 'https://wallpapercave.com/wp/p4iaEa4.jpg' + show.posterURLs)
-        var imageContent = document.createTextNode('background')
-        image.appendChild(imageContent)
-        showContainers[i].appendChild(image)
     }
 }
 
@@ -286,7 +288,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         grabUserInput()
 
         // We do an API request for data.
-        // userRequest() commented out to prevent API requests for the time being
+        userRequest()
 
         // We go from the loading page to results page
         setTimeout(() => {
@@ -296,7 +298,7 @@ getId('entire-container').addEventListener('click', function(targ) {
 })
 
 function loadingPage() {
-    if (currentNode().dataset.index == (parseInt(totalIndex()) - 1)) {
+    if (currentNode().dataset.index == (parseInt(totalIndex())) - 1) {
         index++;
         showCurrentNode();
     }
