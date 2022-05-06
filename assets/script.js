@@ -31,9 +31,13 @@ var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
 // Replace 'element here' with the html parents that have/will have class hidden
 var forListeners = queryAll('section')
 
+// Check to see that forListeners is a nodeList
+// console.log(forListeners)
+
 // Function that returns how many indexs there are. Could be useful if we end up adding more sections
+// Logic for sections with no dataset index todo
 function totalIndex() {
-    return (forListeners[forListeners.length - 1]).dataset.index
+    return (forListeners[forListeners.length - 3]).dataset.index
 }
 
 // Loops over all nodes and returns the node that the user is currently on
@@ -172,6 +176,7 @@ async function userRequest() {
         .then(response => {
             console.log(response)
             // We display the shows passing the response object in
+            // Loading page code here
             displayShows(response)
         })
         .catch(err => console.error(err));
@@ -179,7 +184,7 @@ async function userRequest() {
 
 function displayShows(response) {
     var shows = []
-    // Looping through the response object 3 times to grab 3 shows
+    // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
     for (var i = 0; i < response.results.length; i++) {
         // We loop through response.results and assign it a variable
         var show = response.results[i]
@@ -189,17 +194,24 @@ function displayShows(response) {
     // Check to see that shows has all results
     // console.log(shows)
 
+    // If there are no shows to display we show the no shows page
+    if (shows.length === 0) {
+        currentNode().setAttribute('id', 'hidden')
+
+    }
+
     var showContainers = queryAll('.show-container')
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
-        if (shows[i] === undefined) {
+        // We grab a random show
+        show = shows[Math.floor((Math.random() * shows.length) + 0)]
+        if (show === undefined || show === null) {
             return;
         }
 
-        // We grab a random show first
-        show = shows[i]
-        console.log(show)
+        //Check to see current index show
+        // console.log(show)
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -238,7 +250,7 @@ function displayShows(response) {
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
-
+      
         // Background Trailer Image
         console.log(show)
         var image = document.createElement('image')
@@ -287,11 +299,21 @@ getId('entire-container').addEventListener('click', function(targ) {
         grabUserInput()
 
         // We do an API request for data.
-        // userRequest() commented out to prevent API requests for the time being
+        userRequest()
 
-        // console.log('This is the user input: ' + userInput)
+        // We go from the loading page to results page
+        setTimeout(() => {
+            loadingPage()
+        }, 1700);
     }
 })
+
+function loadingPage() {
+    if (currentNode().dataset.index == (parseInt(totalIndex())) - 1) {
+        index++;
+        showCurrentNode();
+    }
+}
 
 // Fucnction to ensure user selects a choice of platform
 function grabServiceInput(platformclick) {

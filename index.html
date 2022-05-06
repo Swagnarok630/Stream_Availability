@@ -168,17 +168,24 @@
                     <label for="movie">Movie</label>
                 <input type="radio" id="series" name="type" value="series">
                     <label for="series">Series</label> 
-                  
             </div>
 
             <div class="index-btn-container">
+                <div class="arrow-icon-container">
+                    <i class="gg-push-chevron-right-o back"></i>
+                </div>
+                
                 <div class="arrow-icon-container">
                     <i class="gg-push-chevron-right-o generate" id="generate-shows"></i>
                 </div>
             </div>
         </section>
 
-        <section class="results" id="hidden" data-index="5">
+        <section class="loading-page" id="hidden" data-index="5">
+            <span class="loader"><span class="loader-inner"></span></span>
+        </section>
+
+        <section class="results" id="hidden" data-index="6">
             <img src="" class="img-fluid">
             <div class="show-container">
                 <video id="myVideo" width="320" height="176">
@@ -200,6 +207,18 @@
                     Your browser does not support HTML5 video.
                 </video>
             </div>
+        </section>
+
+        <section class="no-shows-found" id="hidden">
+            <h1>
+                No shows found
+            </h1>
+        </section>
+
+        <section class="errors" id="hidden">
+            <h1>
+                Error 
+            </h1>
         </section>
     </div>
 
