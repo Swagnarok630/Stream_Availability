@@ -250,6 +250,17 @@ function displayShows(response) {
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
+      
+        // Background Trailer Image
+        console.log(show)
+        var image = document.createElement('image')
+        image.setAttribute('width', '100%')
+        image.setAttribute('height', '100%')
+        image.setAttribute('src', 'https://wallpapercave.com/wp/p4iaEa4.jpg' + show.posterURLs)
+        var imageContent = document.createTextNode('background')
+        image.appendChild(imageContent)
+        showContainers[i].appendChild(image)
+        console.log()
     }
 }
 

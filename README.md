@@ -1,18 +1,31 @@
 # Stream_Availability
 
+Tony, Chase, Dennis, Darryl, Matt
+
 HTML and CSS
 
-1. Load the page that displays a landing page with from the HTML
+1. Load the page that displays a landing page with from the HTML,
+-This will have a Hello, let's find something to watch. This has a dark purple text and a light background color
 2. Create an interactive button and instructions on what movies to pick from
+-This will have an orange design and will be frozen and remain among each page we switch through
 3. Click the button so that it brings you to the next hidden page
+-This will have a forward and backward button that allows you to change pages
 4. Hide the pages with a hidden display in the CSS
+-This will be found in the CSS with the class called hidden and a transparent command
 5. Ask the user what streaming service they use, and store that value
+-This will have dark purple text and a light background with purple fill in
 6. Click the button so that it can bring you to the next page
+-This will be orange button with a forward and backward function
 7. See what genre the user wants to pick from and store those values
+-This will be ran inside the js and will have purple text with dark purple bubbles
 8. Click the button so that it can bring you to the next page
+-This will be orange button with a forward and backward function
 9. Ask what Movie or Show the user would like to watch next
+-This will have 2 choices with a dark purple bubble and purple text with a light background
 10. Click the button so that it can bring you to the next page
+-This will be orange button with a forward and backward function
 11. Produce an out put from the stored values that allows the user to see what trailers they can watch 
+-This will have a youtube page tied to a generate youtube page with purple borders
 
 Java
 
