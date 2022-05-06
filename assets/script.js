@@ -179,7 +179,7 @@ async function userRequest() {
             return response.json()
         })
         .then(response => {
-            console.log(response)
+            // console.log(response)
             // We display the shows passing the response object in
             // Loading page code here
             displayShows(response)
@@ -189,6 +189,7 @@ async function userRequest() {
 
 function displayShows(response) {
     var shows = []
+    var showHolder = []
     // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
     for (var i = 0; i < response.results.length; i++) {
         // We loop through response.results and assign it a variable
@@ -207,27 +208,26 @@ function displayShows(response) {
     }
 
     // Holds the 3 shows objects that are already appended onto the page
-    var showHolder = []
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
         // We grab a random show
-        show = shows[Math.floor((Math.random() * shows.length) + 0)]
-
-        // We push that show into the showHolder array
-        showHolder.push(show)
-
-        // If the current show index is already in the showHolder array, we return so we don't get duplicate shows
-        if (containsShow(show[i], showHolder)) {
-            return;
-        }
+        var show = shows[Math.floor((Math.random() * shows.length) + 0)]
+        
+        // Check to see show object
+        // console.log(show)
 
         if (show === undefined || show === null) {
             return;
         }
 
-        //Check to see current index show
-        // console.log(show)
+        // If the current show is already in the showHolder, we skip current iteration
+        if (containsShow(show, showHolder)) {
+            continue;
+        } else {
+        // We push that show into the showHolder array
+            showHolder.push(show)
+        }
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
@@ -270,6 +270,14 @@ function displayShows(response) {
         // Cover Image
         pictureContainer[i].style.backgroundImage = "url('" + show.posterURLs['780'] + "')"
     }
+
+    // Conditional statements to hide show-container if they don't have any results
+    for (var i = 0; i < 3; i++) {
+        if (showHolder[i] === undefined) {
+            showContainers[i].setAttribute('id', 'hidden')
+        }
+    }
+    console.log(showHolder)
 }
 
 // https://stackoverflow.com/questions/4587061/how-to-determine-if-object-is-in-array

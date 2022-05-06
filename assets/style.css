@@ -256,6 +256,7 @@ h2 {
 /* results page styling */
 .results {
     height: fit-content;
+    min-height: 100vh;
     background-color: #CAC9F2;
     color:#8985F2;
     padding: 2em;
@@ -264,6 +265,10 @@ h2 {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.results h1 {
+    text-align: center;
 }
 
 .show-container {
@@ -289,7 +294,7 @@ h2 {
     background-color: #000;
     border-radius: 1em;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: center center;
     background-size: 100% 100%;
 }
 
@@ -321,12 +326,11 @@ h2 {
     font-size: 1rem;
     margin: auto;
     padding: 0;
-    padding-right: .25em;
 }
 
 #results-video {
     flex-shrink: 0;
-    margin-left: .5em;
+    margin-left: .75em;
 }
 
 /* The Modal (background) */
