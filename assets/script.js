@@ -240,6 +240,7 @@ function displayShows(response) {
         showContainers[i].appendChild(video)
 
         // Background Trailer Image
+        console.log(show)
         var image = document.createElement('image')
         image.setAttribute('width', '100%')
         image.setAttribute('height', '100%')
@@ -247,6 +248,7 @@ function displayShows(response) {
         var imageContent = document.createTextNode('background')
         image.appendChild(imageContent)
         showContainers[i].appendChild(image)
+        console.log()
     }
 }
 
