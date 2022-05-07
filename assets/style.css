@@ -537,6 +537,7 @@ h6 {
 
 .results h1 {
     text-align: center;
+    color: #9D0000;
 }
 
 .show-container {
@@ -573,6 +574,8 @@ h6 {
     padding-left: 2em;
     padding-right: 2em;
     padding-top: .25em;
+    font-size: 1rem;
+    color: white;
 }
 
 #overview {
@@ -580,12 +583,25 @@ h6 {
     padding-top: 1em;
     padding-right: 2.3em;
     font-size: 1rem;
+    color: white;
 }
 
-.title-year-container {
+.title-year-container h1 {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     color: #F9B931;
+    text-align: center;
+}
+
+.title-year-container h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    color: #F9B931;
+    text-align: center;
 }
 
 
@@ -595,9 +611,7 @@ h6 {
 }
 
 #year {
-    text-align: center;
     font-size: 1rem;
-    margin: auto;
     padding: 0;
 }
 
