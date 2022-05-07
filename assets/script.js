@@ -204,10 +204,10 @@ function displayShows(response) {
     console.log(shows)
 
     // If there are no shows to display we show the no shows page
-    if (shows.length === 0) {
-        currentNode().setAttribute('id', 'hidden')
-        getClass().removeAttribute('id')
-    }
+    // if (shows.length === 0) {
+    //     currentNode().setAttribute('id', 'hidden')
+    //     getClass().removeAttribute('id')
+    // }
 
     // var show = shows[Math.floor((Math.random() * shows.length) + 0)]
         // If the current show is already in the showHolder, we skip current iteration
