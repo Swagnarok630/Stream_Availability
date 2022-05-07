@@ -31,7 +31,6 @@ section {
     animation-iteration-count: infinite;
 }
 
-
 .background span:nth-child(0) {
     color: #716df2;
     top: 69%;
@@ -41,6 +40,7 @@ section {
     transform-origin: 3vw -22vh;
     box-shadow: 40vmin 0 5.429504742992527vmin currentColor;
 }
+
 .background span:nth-child(1) {
     color: #8985f2;
     top: 40%;
@@ -50,6 +50,7 @@ section {
     transform-origin: -6vw 5vh;
     box-shadow: 40vmin 0 5.662654326435108vmin currentColor;
 }
+
 .background span:nth-child(2) {
     color: #cac9f2;
     top: 83%;
@@ -59,6 +60,7 @@ section {
     transform-origin: 10vw -5vh;
     box-shadow: 40vmin 0 5.6357625038105095vmin currentColor;
 }
+
 .background span:nth-child(3) {
     color: #cac9f2;
     top: 3%;
@@ -68,6 +70,7 @@ section {
     transform-origin: 12vw -5vh;
     box-shadow: -40vmin 0 5.145920512606624vmin currentColor;
 }
+
 .background span:nth-child(4) {
     color: #cac9f2;
     top: 72%;
@@ -77,6 +80,7 @@ section {
     transform-origin: -20vw -9vh;
     box-shadow: 40vmin 0 5.491964955632967vmin currentColor;
 }
+
 .background span:nth-child(5) {
     color: #cac9f2;
     top: 19%;
@@ -86,6 +90,7 @@ section {
     transform-origin: 17vw -13vh;
     box-shadow: -40vmin 0 5.56472295331061vmin currentColor;
 }
+
 .background span:nth-child(6) {
     color: #716df2;
     top: 8%;
@@ -95,6 +100,7 @@ section {
     transform-origin: -9vw 8vh;
     box-shadow: 40vmin 0 5.370989050347798vmin currentColor;
 }
+
 .background span:nth-child(7) {
     color: #8985f2;
     top: 50%;
@@ -104,6 +110,7 @@ section {
     transform-origin: 18vw -1vh;
     box-shadow: -40vmin 0 5.647023325233482vmin currentColor;
 }
+
 .background span:nth-child(8) {
     color: #8985f2;
     top: 60%;
@@ -113,6 +120,7 @@ section {
     transform-origin: 1vw -16vh;
     box-shadow: -40vmin 0 5.700544726788724vmin currentColor;
 }
+
 .background span:nth-child(9) {
     color: #8985f2;
     top: 2%;
@@ -122,6 +130,7 @@ section {
     transform-origin: 21vw 13vh;
     box-shadow: 40vmin 0 5.467516796120428vmin currentColor;
 }
+
 .background span:nth-child(10) {
     color: #716df2;
     top: 88%;
@@ -131,6 +140,7 @@ section {
     transform-origin: -5vw 14vh;
     box-shadow: -40vmin 0 5.477085335653413vmin currentColor;
 }
+
 .background span:nth-child(11) {
     color: #8985f2;
     top: 24%;
@@ -140,6 +150,7 @@ section {
     transform-origin: -24vw 17vh;
     box-shadow: -40vmin 0 5.650205905112912vmin currentColor;
 }
+
 .background span:nth-child(12) {
     color: #8985f2;
     top: 22%;
@@ -149,6 +160,7 @@ section {
     transform-origin: 3vw -2vh;
     box-shadow: 40vmin 0 5.040873522429218vmin currentColor;
 }
+
 .background span:nth-child(13) {
     color: #716df2;
     top: 5%;
@@ -158,6 +170,7 @@ section {
     transform-origin: -24vw 18vh;
     box-shadow: -40vmin 0 5.4400361363248955vmin currentColor;
 }
+
 .background span:nth-child(14) {
     color: #cac9f2;
     top: 23%;
@@ -167,6 +180,7 @@ section {
     transform-origin: -5vw -4vh;
     box-shadow: -40vmin 0 5.039197209027951vmin currentColor;
 }
+
 .background span:nth-child(15) {
     color: #8985f2;
     top: 35%;
@@ -176,6 +190,7 @@ section {
     transform-origin: 8vw 12vh;
     box-shadow: 40vmin 0 5.563554587184538vmin currentColor;
 }
+
 .background span:nth-child(16) {
     color: #8985f2;
     top: 59%;
@@ -185,6 +200,7 @@ section {
     transform-origin: -10vw -11vh;
     box-shadow: -40vmin 0 5.90046834117709vmin currentColor;
 }
+
 .background span:nth-child(17) {
     color: #cac9f2;
     top: 82%;
@@ -194,6 +210,7 @@ section {
     transform-origin: -10vw -5vh;
     box-shadow: -40vmin 0 5.538892821508381vmin currentColor;
 }
+
 .background span:nth-child(18) {
     color: #8985f2;
     top: 48%;
@@ -203,6 +220,7 @@ section {
     transform-origin: 14vw -24vh;
     box-shadow: 40vmin 0 5.3402692768083915vmin currentColor;
 }
+
 .background span:nth-child(19) {
     color: #8985f2;
     top: 71%;
@@ -221,12 +239,43 @@ section {
 h1 {
     font-weight: bolder;
     font-size: 5rem;
+    font-family: 'Lucida Handwriting',cursive;
+    color: rgba(70, 64, 252, 0.813);
 }
 
 h2 {
     font-weight: bolder;
     font-size: 2.5rem;
     padding: 1.25em;
+    font-family: 'Lucida Handwriting',cursive;
+    color: rgba(70, 64, 252, 0.813);
+}
+
+h3 {
+    font-weight: bolder;
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(9, 9, 165);
+}
+
+h4 {
+    font-weight: bolder;
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(9, 9, 165);
+}
+
+h5 {
+    font-weight: bolder;
+    font-size: 5rem;
+    text-align: center;
+    color: rgb(9, 9, 165);
+}
+
+h6 {
+    font-weight: bolder;
+    font-size: 5rem;
+    color: rgba(70, 64, 252, 0.813);
 }
 
 .landing-page {
@@ -320,14 +369,13 @@ h2 {
 
 /* Streaming service page styling */
 .streaming-service {
-    /* display: none; */
     padding: 2em;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .streaming-service .btn-group {
-    height: 25vh;
+    height: 75vh;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -370,20 +418,19 @@ h2 {
 
 /* genres page styling */
 .genres {
-    /* display: none; */
-    padding: 2em;
     border: 2px solid transparent;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .genres .btn-group {
+    height: 72vh;
     max-width: 100vw;
     border: 2px solid transparent;
-    padding: 2em;
+    padding: 70px 150px;
     display: flex;
     flex-direction: row;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
 
 .genres .btn-group label {
@@ -394,24 +441,12 @@ h2 {
     color: #716DF2;
     height: 4vh;
     width: 15vw;
-    font-size: 17px;
+    font-size: 25px;
     font-style: Sans-serif;
     padding: 15px;
     border-radius: 25px;
     justify-content: space-evenly;
     text-align: center;
-    
-    /*margin: 1em;
-    height: 30px;
-    width: 120px;
-    background-color: #CAC9F2;
-    color:#716DF2;
-    font-size: 17px;
-    font-style: Sans-serif;
-    border-radius: 25px;
-    border: solid 2px #716DF2;
-    justify-content: space-evenly;
-    text-align: center;*/
 }
 
 .genres .btn-group label:hover {
@@ -430,14 +465,13 @@ h2 {
 
 /* series or movie page styling */
 .series-movie {
-    /* display: none; */
     padding: 2em;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .series-movie .btn-group {
-    height: 25vh;
+    height: 70vh;
     width: 102vw;
     border: solid 2px transparent;
     display: flex;
