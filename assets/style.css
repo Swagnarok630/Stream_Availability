@@ -511,7 +511,7 @@ h6 {
 .results {
     height: fit-content;
     min-height: 100vh;
-    background-color: black;
+    background-color: white;
     color: #F07900;
     padding: 2em;
     display: flex;
@@ -521,28 +521,13 @@ h6 {
     justify-content: center;
 }
 
-.results::before {
-    content: "";
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    bottom: 0px;
-    left: 0px;
-    background: url('https://allenministries.com/wp-content/uploads/2018/08/film-background-1334067869u9d.jpg');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center center;
-    background-size: cover;
-    opacity: 0.2;
-}
-
 .results h1 {
     text-align: center;
-    color: #9D0000;
+    color: #716df2;
 }
 
 .show-container {
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid #716DF2;
     margin: 2em;
     padding: 2em;
     width: 80vw;
@@ -551,8 +536,8 @@ h6 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    color: white;
-    background-color: black;
+    color:white;
+    background-color: #8985f2;
     border-radius: 1em 0 0 1em;
 }
 
