@@ -30,6 +30,8 @@ var apiKeys = {
     tony: '0a6c780725msh1dabbdd8d99ac58p1adc10jsna65e0cb9d583',
     darryl: 'b1772a2b66msh8fe7f52298f657ep156885jsn20747bc84c72',
     matt: '2553690d8bmsh3300dfff1c376abp18f357jsnc308ab21a73a',
+    dennis: '8beef7c8bbmsh7d04d9d3573409bp1a65c8jsn674f1654869e',
+    extra: '5185812ee4msh489975041e65ed4p146515jsn8b6ffdaad1b8'
 }
 
 var allKeys = [apiKeys.chase, apiKeys.tony, apiKeys.darryl, apiKeys.matt];
@@ -131,7 +133,7 @@ async function tryAgain(apiKey){
 
 // Main API function that grabs API data
 async function userRequest() {
-    var apiKey = allKeys[2];
+    var apiKey = allKeys[3];
     var options = {
         method: 'GET',
         headers: {
