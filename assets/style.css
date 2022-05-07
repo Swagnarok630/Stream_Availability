@@ -347,7 +347,6 @@ h6 {
 
 .proceed {
     transform: scale(6);
-    margin-left: 1em;
 }
 
 .generate {
@@ -379,6 +378,7 @@ h6 {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -391,13 +391,14 @@ h6 {
     font-style: Sans-serif;
     padding: 15px;
     border-radius: 25px;
+    min-width: fit-content;
 }
 
 .streaming-service .btn-group input {
     opacity: 0;
     width: 0;
     height: 0;
-} 
+}
 
 .streaming-service .btn-group label:hover {
     background-color: #716DF2;
@@ -597,6 +598,7 @@ h6 {
 #title {
     padding: .5em;
     font-size: 2rem;
+    overflow: hidden;
 }
 
 #year {

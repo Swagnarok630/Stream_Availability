@@ -1,7 +1,17 @@
 # Stream_Availability
+A Simple Web App that Generates Shows to Watch
 
+Project Members:
 Tony, Chase, Dennis, Darryl, Matt
 
+Deployed Site:
+https://swagnarok630.github.io/Stream_Availability/
+[!Getting Started](deployed.jpg)
+
+Stack: HTML, CSS (Bootstrap, CSS.GG), JavaScript
+API: Streaming Availability API
+
+Project Details:
 HTML and CSS
 
 1. Load the page that displays a landing page with from the HTML,
@@ -27,7 +37,7 @@ HTML and CSS
 11. Produce an out put from the stored values that allows the user to see what trailers they can watch 
 -This will have a youtube page tied to a generate youtube page with purple borders
 
-Java
+JavaScript
 
 1. Download the web api and store the key so that the landing page is accessible and its interactive with the buttons
 2. Loop through a variety of different videos from each page that are stream services, genres and types
