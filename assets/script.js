@@ -7,6 +7,11 @@ var getClass = element => document.getElementsByClassName(element)
 // Make sure that queryAll returns a nodeList
 // console.log(queryAll('section'))
 
+var showContainers = queryAll('.show-container')
+var titleYearContainer = queryAll('.title-year-container')
+var showInformationContainer = queryAll('#show-information-container')
+var pictureContainer = queryAll('#picture-container')
+
 // Global Variables
 var index = 1;
 var randomizedPageNumber = [];
@@ -174,7 +179,7 @@ async function userRequest() {
             return response.json()
         })
         .then(response => {
-            console.log(response)
+            // console.log(response)
             // We display the shows passing the response object in
             // Loading page code here
             displayShows(response)
@@ -184,6 +189,7 @@ async function userRequest() {
 
 function displayShows(response) {
     var shows = []
+    var showHolder = []
     // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
     for (var i = 0; i < response.results.length; i++) {
         // We loop through response.results and assign it a variable
@@ -191,81 +197,98 @@ function displayShows(response) {
         // We push that show into shows array
         shows.push(show)
     }
+
     // Check to see that shows has all results
-    // console.log(shows)
+    console.log(shows)
 
     // If there are no shows to display we show the no shows page
     if (shows.length === 0) {
         currentNode().setAttribute('id', 'hidden')
-
+        getClass().removeAttribute('id')
     }
 
-    var showContainers = queryAll('.show-container')
+    // Holds the 3 shows objects that are already appended onto the page
 
     // Now we loop through containers and shows
     for (var i = 0; i < showContainers.length; i++) {
         // We grab a random show
-        show = shows[Math.floor((Math.random() * shows.length) + 0)]
+        var show = shows[Math.floor((Math.random() * shows.length) + 0)]
+        
+        // Check to see show object
+        // console.log(show)
+
         if (show === undefined || show === null) {
             return;
         }
 
-        //Check to see current index show
-        // console.log(show)
+        // If the current show is already in the showHolder, we skip current iteration
+        if (containsShow(show, showHolder)) {
+            continue;
+        } else {
+        // We push that show into the showHolder array
+            showHolder.push(show)
+        }
 
         // Creating title tag, setting its id, and appending it to the page
         var title = document.createElement('h1')
         title.setAttribute('id', 'title')
         var titleContent = document.createTextNode(show.title)
         title.appendChild(titleContent)
-        showContainers[i].appendChild(title)
+        titleYearContainer[i].appendChild(title)
 
-        // We do the same for the year, cast, and overview
+        // We do the same for the year
         var year = document.createElement('h2')
-        year.setAttribute('id', 'title')
+        year.setAttribute('id', 'year')
         var yearContent = document.createTextNode(show.year)
         year.appendChild(yearContent)
-        showContainers[i].appendChild(year)
+        titleYearContainer[i].appendChild(year)
 
         // Cast
         var cast = document.createElement('h3')
-        cast.setAttribute('id', 'title')
-        var castContent = document.createTextNode(show.cast.join(', '))
+        cast.setAttribute('id', 'cast')
+        var castContent = document.createTextNode('Cast: ' + show.cast.join(', '))
         cast.appendChild(castContent)
-        showContainers[i].appendChild(cast)
+        showInformationContainer[i].appendChild(cast)
 
         // Overview
-        var overview = document.createElement('p')
+        var overview = document.createElement('h3')
         overview.setAttribute('id', 'overview')
-        var overviewContent = document.createTextNode(show.overview)
+        var overviewContent = document.createTextNode('About: ' + show.overview)
         overview.appendChild(overviewContent)
-        showContainers[i].appendChild(overview)
+        showInformationContainer[i].appendChild(overview)
 
         // Video
         var video = document.createElement('iframe')
-        video.setAttribute('width', '852px')
-        video.setAttribute('height', '480px')
-        video.style.flexShrink = '0';
+        video.setAttribute('id', 'results-video')
+        video.setAttribute('width', '640px')
+        video.setAttribute('height', '360px')
         video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
         var videoContent = document.createTextNode('trailer')
         video.appendChild(videoContent)
         showContainers[i].appendChild(video)
       
-        // Background Trailer Image
-        console.log(show)
-        var image = document.createElement('image')
-        image.setAttribute('width', '100%')
-        image.setAttribute('height', '100%')
-        image.setAttribute('src', show.posterURLs['780'])
-        var imageContent = document.createTextNode('background')
-        image.appendChild(imageContent)
-        showContainers[i].appendChild(image)
-
-        console.log(show.posterURLs['780'])
-        console.log("url(" + show.posterURLs['780'] + ")")
-        showContainers[i].setAttribute('style', "backgroundImage: url('" + show.posterURLs['780'] + "')")
-        
+        // Cover Image
+        pictureContainer[i].style.backgroundImage = "url('" + show.posterURLs['780'] + "')"
     }
+
+    // Conditional statements to hide show-container if they don't have any results
+    for (var i = 0; i < 3; i++) {
+        if (showHolder[i] === undefined) {
+            showContainers[i].setAttribute('id', 'hidden')
+        }
+    }
+    console.log(showHolder)
+}
+
+// https://stackoverflow.com/questions/4587061/how-to-determine-if-object-is-in-array
+function containsShow(show, listOfShows) {
+    var i;
+    for (i = 0; i < listOfShows.length; i++) {
+        if (listOfShows[i] === show) {
+            return true;
+        }
+    }
+    return false;
 }
 
 getId('entire-container').addEventListener('click', function(targ) {
@@ -308,7 +331,7 @@ getId('entire-container').addEventListener('click', function(targ) {
         // We go from the loading page to results page
         setTimeout(() => {
             loadingPage()
-        }, 1700);
+        }, 4000);
     }
 })
 
