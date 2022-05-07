@@ -356,7 +356,7 @@ h2 {
     color:#CAC9F2 
 } 
 
-.streaming-service .btn-group input[type="checkbox"]:checked+label{
+.streaming-service .btn-group input[type="radio"]:checked+label{
     background-color: #716DF2;
     color: #CAC9F2;
 }
@@ -476,8 +476,8 @@ h2 {
 .results {
     height: fit-content;
     min-height: 100vh;
-    background-color: #CAC9F2;
-    color:#8985F2;
+    background-color: black;
+    color: #F07900;
     padding: 2em;
     display: flex;
     flex-direction: column;
@@ -486,18 +486,36 @@ h2 {
     justify-content: center;
 }
 
+.results::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    background: url('https://allenministries.com/wp-content/uploads/2018/08/film-background-1334067869u9d.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.2;
+}
+
 .results h1 {
     text-align: center;
 }
 
 .show-container {
-    border: 2px solid;
+    border: 1px solid rgba(255, 255, 255, 0.5);
     margin: 2em;
     padding: 2em;
     width: fit-content;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white;
+    background-color: black;
+    border-radius: 1em 0 0 1em;
 }
 
 #show-information-container {
@@ -520,6 +538,7 @@ h2 {
 #cast {
     padding-left: 2em;
     padding-right: 2em;
+    padding-top: .25em;
 }
 
 #overview {
@@ -532,6 +551,7 @@ h2 {
 .title-year-container {
     display: flex;
     flex-wrap: wrap;
+    color: #F9B931;
 }
 
 
@@ -550,6 +570,8 @@ h2 {
 #results-video {
     flex-shrink: 0;
     margin-left: .75em;
+    position: relative;
+    z-index: 1;
 }
 
 /* The Modal (background) */

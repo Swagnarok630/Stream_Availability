@@ -11,6 +11,7 @@ var showContainers = queryAll('.show-container')
 var titleYearContainer = queryAll('.title-year-container')
 var showInformationContainer = queryAll('#show-information-container')
 var pictureContainer = queryAll('#picture-container')
+var resultsPage = querySel('.results')
 
 // Global Variables
 var index = 1;
@@ -108,10 +109,11 @@ async function tryAgain(apiKey){
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
-    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en';
+    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&page=1&output_language=en&language=en'
 
     // check to see if the request is valid
-    // console.log(apiUrl)
+
+    console.log(apiUrl)
 
     fetch(apiUrl, options)
     .then(response => {
@@ -123,13 +125,13 @@ async function tryAgain(apiKey){
                 return console.log("YOU RAN OUT OF USABLE API KEYS!!!")
             }
         }
-        return response.json()
+        return response.json();
     })
 }
 
 // Main API function that grabs API data
 async function userRequest() {
-    var apiKey = allKeys[0];
+    var apiKey = allKeys[2];
     var options = {
         method: 'GET',
         headers: {
@@ -141,8 +143,10 @@ async function userRequest() {
     var services = userInput.services.join('%2C%20')
     var genre = userInput.genre.join('%2C%20')
     var type = userInput.type.join('%2C%20')
-    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&output_language=en&language=en'
+    var apiUrl = 'https://streaming-availability.p.rapidapi.com/search/basic?country=us&service=' + services + '&type=' + type + '&genre=' + genre + '&page=1&output_language=en&language=en'
 
+    console.log(apiUrl)
+    console.log(userInput)
     // console.log(randomizedPageNumber)
     // We fetch to randomize the a page number based on total_pages
     fetch(apiUrl, options)
@@ -161,12 +165,11 @@ async function userRequest() {
             }
         })
         .then(response => {
-            console.log("THIS IS TONY ---- ", response)
+            console.log("THIS IS API DATA ---", response)
             // Using math.floor to randomize page
             randomizedNumber = Math.floor((Math.random() * response.total_pages) + 1)
             return randomizedNumber.toString()
         })
-        
     // We catch the returned promise and use it to dynamically change the URL
     .then(randomizedNumber => {
         // Console log the page number
@@ -189,7 +192,6 @@ async function userRequest() {
 
 function displayShows(response) {
     var shows = []
-    var showHolder = []
     // Looping through the response results that has 8 object shows LIMIT and pushing them into shows array
     for (var i = 0; i < response.results.length; i++) {
         // We loop through response.results and assign it a variable
@@ -207,77 +209,151 @@ function displayShows(response) {
         getClass().removeAttribute('id')
     }
 
-    // Holds the 3 shows objects that are already appended onto the page
-
-    // Now we loop through containers and shows
-    for (var i = 0; i < showContainers.length; i++) {
-        // We grab a random show
-        var show = shows[Math.floor((Math.random() * shows.length) + 0)]
-        
-        // Check to see show object
-        // console.log(show)
-
-        if (show === undefined || show === null) {
-            return;
-        }
-
+    // var show = shows[Math.floor((Math.random() * shows.length) + 0)]
         // If the current show is already in the showHolder, we skip current iteration
-        if (containsShow(show, showHolder)) {
+    // if (containsShow(show, showHolder)) {
+    //     continue;
+    // } else {
+    // // We push that show into the showHolder array
+    //     showHolder.push(show)
+    // }
+
+    // If shows.length is less than 4, we just append the first 3 in the array
+    if (shows.length < 4) {
+        for (var i = 0; i < showContainers.length; i++) {
+            // We grab a random show
+            var show = shows[i]
+            
+            if (show === undefined || show === null) {
+                return;
+            }
+            
+            // Check to see show object
+            // console.log(show)
+    
+            // Creating title tag, setting its id, and appending it to the page
+            var title = document.createElement('h1')
+            title.setAttribute('id', 'title')
+            var titleContent = document.createTextNode(show.title)
+            title.appendChild(titleContent)
+            titleYearContainer[i].appendChild(title)
+    
+            // We do the same for the year
+            var year = document.createElement('h2')
+            year.setAttribute('id', 'year')
+            var yearContent = document.createTextNode(show.year)
+            year.appendChild(yearContent)
+            titleYearContainer[i].appendChild(year)
+    
+            // Cast
+            var cast = document.createElement('h3')
+            cast.setAttribute('id', 'cast')
+            var castContent = document.createTextNode('Cast: ' + show.cast.join(', '))
+            cast.appendChild(castContent)
+            showInformationContainer[i].appendChild(cast)
+    
+            // Overview
+            var overview = document.createElement('h3')
+            overview.setAttribute('id', 'overview')
+            var overviewContent = document.createTextNode('About: ' + show.overview)
+            overview.appendChild(overviewContent)
+            showInformationContainer[i].appendChild(overview)
+    
+            // Video
+            var video = document.createElement('iframe')
+            video.setAttribute('id', 'results-video')
+            video.setAttribute('width', '640px')
+            video.setAttribute('height', '360px')
+            video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
+            var videoContent = document.createTextNode('trailer')
+            video.appendChild(videoContent)
+            showContainers[i].appendChild(video)
+        
+            // Cover Image
+            pictureContainer[i].style.backgroundImage = "url('" + show.posterURLs['500'] + "')"
+
+            // Setting the data attributes to filled
+            showContainers[i].dataset.filled = "true";
+        }
+    // If there are more than 3 shows we will randomly pick 3 from that list
+    } else if (shows.length > 3) {
+        // We store the 3 shows in showHolder
+        var showHolder = pickThree(shows)
+
+        for (var i = 0; i < showContainers.length; i++) {
+            // We grab a random show
+            var show = showHolder[i]
+            
+            // Check to see show object
+            // console.log(show)
+    
+            // Creating title tag, setting its id, and appending it to the page
+            var title = document.createElement('h1')
+            title.setAttribute('id', 'title')
+            var titleContent = document.createTextNode(show.title)
+            title.appendChild(titleContent)
+            titleYearContainer[i].appendChild(title)
+    
+            // We do the same for the year
+            var year = document.createElement('h2')
+            year.setAttribute('id', 'year')
+            var yearContent = document.createTextNode(show.year)
+            year.appendChild(yearContent)
+            titleYearContainer[i].appendChild(year)
+    
+            // Cast
+            var cast = document.createElement('h3')
+            cast.setAttribute('id', 'cast')
+            var castContent = document.createTextNode('Cast: ' + show.cast.join(', '))
+            cast.appendChild(castContent)
+            showInformationContainer[i].appendChild(cast)
+    
+            // Overview
+            var overview = document.createElement('h3')
+            overview.setAttribute('id', 'overview')
+            var overviewContent = document.createTextNode('About: ' + show.overview)
+            overview.appendChild(overviewContent)
+            showInformationContainer[i].appendChild(overview)
+    
+            // Video
+            var video = document.createElement('iframe')
+            video.setAttribute('id', 'results-video')
+            video.setAttribute('width', '640px')
+            video.setAttribute('height', '360px')
+            video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
+            var videoContent = document.createTextNode('trailer')
+            video.appendChild(videoContent)
+            showContainers[i].appendChild(video)
+        
+            // Cover Image
+            pictureContainer[i].style.backgroundImage = "url('" + show.posterURLs['500'] + "')"
+
+            // Setting the data attributes to filled
+            showContainers[i].dataset.filled = "true";
+        }
+    }
+
+    // Need to add class hidden to containers that are empty
+    for (var i = 0; i < showContainers.length; i++) {
+        if (showContainers[i].dataset.filled == "false") {
+            showContainers[i].setAttribute('id', 'hidden')
+            console.log('I was run')
+        }
+    }
+}
+
+// FLAW = IT NEEDS TO HAVE 3 ITEMS OR IT WILL KEEP LOOPING
+function pickThree(list) {
+    var threeItems = []
+    while (threeItems.length < 3) {
+        var randomizedIndex = Math.floor((Math.random() * (list.length - 1)) + 0)
+        if (containsShow(list[randomizedIndex], threeItems)) {
             continue;
         } else {
-        // We push that show into the showHolder array
-            showHolder.push(show)
-        }
-
-        // Creating title tag, setting its id, and appending it to the page
-        var title = document.createElement('h1')
-        title.setAttribute('id', 'title')
-        var titleContent = document.createTextNode(show.title)
-        title.appendChild(titleContent)
-        titleYearContainer[i].appendChild(title)
-
-        // We do the same for the year
-        var year = document.createElement('h2')
-        year.setAttribute('id', 'year')
-        var yearContent = document.createTextNode(show.year)
-        year.appendChild(yearContent)
-        titleYearContainer[i].appendChild(year)
-
-        // Cast
-        var cast = document.createElement('h3')
-        cast.setAttribute('id', 'cast')
-        var castContent = document.createTextNode('Cast: ' + show.cast.join(', '))
-        cast.appendChild(castContent)
-        showInformationContainer[i].appendChild(cast)
-
-        // Overview
-        var overview = document.createElement('h3')
-        overview.setAttribute('id', 'overview')
-        var overviewContent = document.createTextNode('About: ' + show.overview)
-        overview.appendChild(overviewContent)
-        showInformationContainer[i].appendChild(overview)
-
-        // Video
-        var video = document.createElement('iframe')
-        video.setAttribute('id', 'results-video')
-        video.setAttribute('width', '640px')
-        video.setAttribute('height', '360px')
-        video.setAttribute('src', 'https://www.youtube.com/embed/' + show.video)
-        var videoContent = document.createTextNode('trailer')
-        video.appendChild(videoContent)
-        showContainers[i].appendChild(video)
-      
-        // Cover Image
-        pictureContainer[i].style.backgroundImage = "url('" + show.posterURLs['780'] + "')"
-    }
-
-    // Conditional statements to hide show-container if they don't have any results
-    for (var i = 0; i < 3; i++) {
-        if (showHolder[i] === undefined) {
-            showContainers[i].setAttribute('id', 'hidden')
+            threeItems.push(list[randomizedIndex])
         }
     }
-    console.log(showHolder)
+    return threeItems
 }
 
 // https://stackoverflow.com/questions/4587061/how-to-determine-if-object-is-in-array
