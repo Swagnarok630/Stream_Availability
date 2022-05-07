@@ -6,7 +6,7 @@
 section {
     position: relative;
     height: 100vh;
-    max-height: 100%;
+    width: 100vw;
 }
 
 .background {
@@ -240,42 +240,42 @@ h1 {
     font-weight: bolder;
     font-size: 5rem;
     font-family: 'Lucida Handwriting',cursive;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 h2 {
     font-weight: bolder;
-    font-size: 2.5rem;
+    font-size: 2rem;
     padding: 1.25em;
     font-family: 'Lucida Handwriting',cursive;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 h3 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h4 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h5 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h6 {
     font-weight: bolder;
     font-size: 5rem;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 .landing-page {
@@ -347,6 +347,7 @@ h6 {
 
 .proceed {
     transform: scale(6);
+    margin-left: 1em;
 }
 
 .generate {
@@ -368,18 +369,19 @@ h6 {
 
 /* Streaming service page styling */
 .streaming-service {
-    padding: 2em;
+    padding: 0;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .streaming-service .btn-group {
-    height: 75vh;
+    height: 28%;
+    width: 88%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    flex-wrap: wrap;
     align-items: center;
+    padding: 0% 6%;
 }
 
 .streaming-service .btn-group label {
@@ -391,14 +393,13 @@ h6 {
     font-style: Sans-serif;
     padding: 15px;
     border-radius: 25px;
-    min-width: fit-content;
 }
 
 .streaming-service .btn-group input {
     opacity: 0;
     width: 0;
     height: 0;
-}
+} 
 
 .streaming-service .btn-group label:hover {
     background-color: #716DF2;
@@ -436,16 +437,16 @@ h6 {
 }
 
 .genres .btn-group label {
-    margin: 1em;
+    margin: 1%;
     display: inline-block;
     background-color: #CAC9F2;
     border: solid 2px #716DF2;
     color: #716DF2;
-    height: 4vh;
-    width: 15vw;
-    font-size: 25px;
+    height: 13%;
+    width: 28%;
+    font-size: 20px;
     font-style: Sans-serif;
-    padding: 15px;
+    padding: 11px;
     border-radius: 25px;
     justify-content: space-evenly;
     text-align: center;
@@ -467,19 +468,20 @@ h6 {
 
 /* series or movie page styling */
 .series-movie {
-    padding: 2em;
     background-color: #F2F2F2;
     color: #8985F2;
 }
 
 .series-movie .btn-group {
-    height: 70vh;
-    width: 102vw;
+    height: 30%;
+    width: 55%;
     border: solid 2px transparent;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: space-around;
     align-items: center;
+    align-content: center;
+    padding: 2% 22%;
 }
 
 .series-movie .btn-group label {
@@ -598,7 +600,6 @@ h6 {
 #title {
     padding: .5em;
     font-size: 2rem;
-    overflow: hidden;
 }
 
 #year {
