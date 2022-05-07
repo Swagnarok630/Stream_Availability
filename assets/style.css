@@ -427,29 +427,34 @@ h6 {
 }
 
 .genres .btn-group {
-    height: 72vh;
-    max-width: 100vw;
+    height: 20%;
+    width: 90%;
     border: 2px solid transparent;
-    padding: 70px 300px;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: inline-block;
+    padding: 4% 6% 8% 8%;
 }
 
 .genres .btn-group label {
-    margin: 1%;
+    margin: 4.5px;
+/*     margin: 1%; */
     display: inline-block;
     background-color: #CAC9F2;
     border: solid 2px #716DF2;
     color: #716DF2;
-    height: 13%;
+    height: 11%;
+    width: 10%;
+    font-size: 13.5px;
+
+/*     height: 13%;
     width: 28%;
-    font-size: 20px;
+    font-size: 20px; */
+
     font-style: Sans-serif;
     padding: 11px;
     border-radius: 25px;
     justify-content: space-evenly;
     text-align: center;
+
 }
 
 .genres .btn-group label:hover {
@@ -728,6 +733,7 @@ h6 {
         width: 426px;
         height: 240px;
     }
+
 h1, h2, h3, h4, h5, h6 {
     font-size: 3rem;
 }
