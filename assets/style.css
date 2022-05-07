@@ -240,7 +240,7 @@ h1 {
     font-weight: bolder;
     font-size: 5rem;
     font-family: 'Lucida Handwriting',cursive;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 h2 {
@@ -248,34 +248,34 @@ h2 {
     font-size: 2.5rem;
     padding: 1.25em;
     font-family: 'Lucida Handwriting',cursive;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 h3 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h4 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h5 {
     font-weight: bolder;
     font-size: 5rem;
     text-align: center;
-    color: rgb(9, 9, 165);
+    color: #8985f2;
 }
 
 h6 {
     font-weight: bolder;
     font-size: 5rem;
-    color: rgba(70, 64, 252, 0.813);
+    color: #8985f2;
 }
 
 .landing-page {
@@ -375,11 +375,13 @@ h6 {
 }
 
 .streaming-service .btn-group {
-    height: 75vh;
+    height: 28%;
+    width: 88%;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
+    padding: 0% 6%;
 }
 
 .streaming-service .btn-group label {
@@ -724,5 +726,19 @@ h6 {
     #results-video {
         width: 426px;
         height: 240px;
+    }
+
+    h1, h2, h3, h4, h5 {
+        font-size: 3rem;
+
+    }
+
+    .streaming-service .btn-group {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        align-content: flex-start;
     }
 }
